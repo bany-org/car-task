@@ -3,7 +3,7 @@ import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import axios from "axios";
 
 import Garage from "./Garage/Garage";
-import Main from "./Main/Main";
+import Main from "./Main/container";
 import PartsShop from "./PartsShop/PartsShop";
 import Market from "./Market/Market";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import UserStatusBar from "../UserStatusBar/UserStatusBar";
+import UserStatusBar from "../UserStatusBar/container";
 import NavigationButton from "../NavigationButton/NavigationButton";
 
 const MainMenu = styled.div`
@@ -9,7 +9,7 @@ const MainMenu = styled.div`
     flex-direction: column;
 `;
 
-const Main = () => {
+const Main = ({ addCash }) => {
     return (
         <div>
             <UserStatusBar />
@@ -22,6 +22,7 @@ const Main = () => {
                 Wiki - tutaj dać info o samochodach - jak silnik pasuje do
                 jakiego nadwozia i jakiej skrzyni itd
             </p>
+            <button onClick={addCash}>Dodaj kasy</button>
         </div>
     );
 };

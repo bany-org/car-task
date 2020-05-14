@@ -1,6 +1,6 @@
 import React from "react";
 
-import UserStatusBar from "../UserStatusBar/UserStatusBar";
+import UserStatusBar from "../UserStatusBar/container";
 import NavigationButton from "../NavigationButton/NavigationButton";
 
 const Market = () => {

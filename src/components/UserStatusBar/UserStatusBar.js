@@ -1,7 +1,7 @@
 import React from "react";
 
-const UserStatusBar = () => {
-    return <div>Cash: 500$ Fame: 20: Energy: 100</div>;
+const UserStatusBar = ({ cash }) => {
+    return <div>Cash: {cash}</div>;
 };
 
 export default UserStatusBar;
