@@ -1,7 +1,11 @@
 import React from "react";
 
-const UserStatusBar = ({ cash }) => {
-    return <div>Cash: {cash}</div>;
+const UserStatusBar = ({ cash, userName }) => {
+    return (
+        <div>
+            Cash: {cash} Name: {userName}
+        </div>
+    );
 };
 
 export default UserStatusBar;

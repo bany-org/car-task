@@ -2,7 +2,7 @@ import { UPDATE_CASH_AMOUNT, ADD_CASH } from "../constants/ActionTypes";
 
 const initialState = {
     cash: 200,
-    name: "Kuba",
+    name: "Jakub Banasiak",
 };
 
 export default function userData(state = initialState, action) {

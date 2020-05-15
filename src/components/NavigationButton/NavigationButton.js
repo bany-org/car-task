@@ -5,7 +5,9 @@ import styled from "styled-components";
 const Button = styled.button`
     text-decoration: none;
     width: 150px;
-    background-color: green;
+    background-color: lightgray;
+    margin: 5px 10px;
+    border-radius: 15px;
 `;
 const NavigationButton = (props) => {
     return (

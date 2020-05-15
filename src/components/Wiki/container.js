@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { addCash } from "../../actions";
-import Main from "./Main";
+import Wiki from "./Wiki";
 
 // const mapStateToProps = (state, ownProps) => ({
 //     active: ownProps.filter === state.visibilityFilter,
@@ -12,4 +12,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     },
 });
 
-export default connect(null, mapDispatchToProps)(Main);
+export default connect(null, mapDispatchToProps)(Wiki);

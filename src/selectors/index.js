@@ -8,8 +8,11 @@ import { createSelector } from "reselect";
 // const getVisibilityFilter = (state) => state.visibilityFilter;
 // const getTodos = (state) => state.todos;
 
-export const getCarSet = (state) => state.carSet;
-export const getUserCash = (state) => state.userData.cash;
+export const getUserName = (state) => state.main.userData.name;
+
+// export const getCarSet = (state) => state.carSet;
+export const getUserCash = (state) => state.main.resources.cash;
+export const getCarColor = (state) => state.main.carData.colorHexCode;
 
 // export const getVisibleTodos = createSelector(
 //     [getVisibilityFilter, getTodos],

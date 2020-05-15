@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+import styled from "styled-components";
 import axios from "axios";
 
-import Garage from "./Garage/Garage";
-import Main from "./Main/container";
+import Garage from "./Garage/container";
+import Wiki from "./Wiki/container";
 import PartsShop from "./PartsShop/PartsShop";
 import Market from "./Market/Market";
-
-import styled from "styled-components";
 
 const Body = styled.div`
     margin: 0;
@@ -31,8 +30,8 @@ function App() {
             {!isLoading && (
                 <Body>
                     <Switch>
-                        <Route exact path="/">
-                            <Main />
+                        <Route exact path="/wiki">
+                            <Wiki />
                         </Route>
                         <Route exact path="/garage">
                             <Garage />
@@ -43,7 +42,7 @@ function App() {
                         <Route exact path="/market">
                             <Market />
                         </Route>
-                        <Redirect to="/"></Redirect>
+                        <Redirect to="/wiki"></Redirect>
                     </Switch>
                 </Body>
             )}

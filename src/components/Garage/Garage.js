@@ -1,17 +1,37 @@
 import React from "react";
+import styled, { css } from "styled-components";
 
-import UserStatusBar from "../UserStatusBar/UserStatusBar";
-import NavigationButton from "../NavigationButton/NavigationButton";
+import TopBar from "../TopBar/TopBar";
+import CarColorChange from "../CarColorChange/CarColorChange";
 
-const Garage = () => {
+import CarSedan from "../../assets/CarSedan/CarSedan";
+
+const Car = styled.div`
+    width: 300px;
+    height: 10px;
+    background-color: red;
+
+    ${(props) =>
+        css`
+            background-color: ${props.color};
+        `}
+`;
+
+const Garage = ({ carColor, changeCarColor, cash }) => {
     return (
         <>
-            <UserStatusBar />
-            <NavigationButton path="/" label="Menu"></NavigationButton>
-            <NavigationButton path="/market" label="Maket"></NavigationButton>
-            <NavigationButton path="/parts" label="Parts"></NavigationButton>
+            <TopBar />
             <h1>Garage</h1>
             <p>Zmiana koloru</p>
+            {cash >= 100 && (
+                <CarColorChange
+                    carColor={carColor}
+                    changeColor={changeCarColor}
+                />
+            )}
+            {cash < 100 && <div>Za mało kasy</div>}
+            {/* <Car color={carColor} /> */}
+            <CarSedan color={carColor} />
             <p>Zmiana silnika</p>
             <p>Zmiana skrzyni</p>
             <h2>Dostępne części???</h2>
