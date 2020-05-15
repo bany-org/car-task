@@ -1,5 +1,7 @@
 import { CHANGE_CAR_COLOR, ADD_CASH } from "../constants/ActionTypes";
 
+import SpraySound from "../assets/SpraySound/SpraySound.mp3";
+
 const initialState = {
     userData: {
         name: "John Doe",
@@ -12,6 +14,11 @@ const initialState = {
     },
 };
 
+function playSpraySound() {
+    const audio = new Audio(SpraySound);
+    audio.play();
+}
+
 export default function main(state = initialState, action) {
     switch (action.type) {
         case CHANGE_CAR_COLOR:
@@ -20,7 +27,10 @@ export default function main(state = initialState, action) {
                 state.carData.colorHexCode === action.colorHexCode
             ) {
                 return state;
+            } else {
+                playSpraySound();
             }
+
             return {
                 ...state,
                 carData: {
