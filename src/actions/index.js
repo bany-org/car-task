@@ -28,6 +28,16 @@ export const updateCarsList = (carsList) => ({
     carsList,
 });
 
+export const updateEnginesList = (enginesList) => ({
+    type: types.UPDATE_ENGINES_LIST,
+    enginesList,
+});
+
 export const sellCar = () => ({
     type: types.SELL_CAR,
+});
+
+export const buyEngine = (model) => ({
+    type: types.BUY_ENGINE,
+    model,
 });

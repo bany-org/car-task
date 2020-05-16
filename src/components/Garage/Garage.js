@@ -1,10 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 import styled, { css } from "styled-components";
 
-import { connect } from "react-redux";
+import { AVAILABLE_CAR_TYPE_ENGINES } from "../../config/Config";
 
 import { changeCarColor, sellCar } from "../../actions";
-import { getMyCar } from "../../selectors";
+import { getMyCar, getUserEnginesList } from "../../selectors";
 
 import TopBar from "../TopBar/TopBar";
 import CarColorChange from "../CarColorChange/CarColorChange";
@@ -27,13 +28,6 @@ const CarOffer = styled.div`
     }
 `;
 
-const carTypesIcons = {
-    PRO: <CarPro />,
-    UBER: <CarUber />,
-    STANDARD: <CarStandard />,
-    WK: <CarWk />,
-};
-
 const renderCarIcon = (type, color) => {
     switch (type) {
         case "PRO":
@@ -53,7 +47,7 @@ const renderCarIcon = (type, color) => {
     }
 };
 
-const Garage = ({ car, changeCarColor, cash, sellCar }) => {
+const Garage = ({ car, changeCarColor, cash, sellCar, engines }) => {
     console.log("garage", car?.color);
 
     return (
@@ -61,13 +55,16 @@ const Garage = ({ car, changeCarColor, cash, sellCar }) => {
             <TopBar />
             <h1>Garage</h1>
             {car && (
-                <CarOffer>
-                    <div>{car.name}</div>
-                    {renderCarIcon(car.type, car.color)}
-                    {/* {carTypesIcons[car.type]} */}
-                    <div>Value: {car.price - 100}$</div>
-                    <button onClick={sellCar}>SELL</button>
-                </CarOffer>
+                <>
+                    <h2>My cars</h2>
+                    <CarOffer>
+                        <div>{car.name}</div>
+                        {renderCarIcon(car.type, car.color)}
+                        {/* {carTypesIcons[car.type]} */}
+                        <div>Value: {car.price - 100}$</div>
+                        <button onClick={sellCar}>SELL</button>
+                    </CarOffer>
+                </>
             )}
             {cash < 100 && <div>Za mało kasy by pomalować!</div>}
             {car && cash >= 100 && (
@@ -80,16 +77,44 @@ const Garage = ({ car, changeCarColor, cash, sellCar }) => {
                 </>
             )}
 
-            <p>Zmiana silnika</p>
-            <p>Zmiana skrzyni</p>
-            <h2>Dostępne części???</h2>
-            <h2>Parametry samochodu?</h2>
+            <h2>My engines</h2>
+            {engines.map((elem) => {
+                let isEngineValid = false;
+                if (car) {
+                    console.log(
+                        "if",
+                        AVAILABLE_CAR_TYPE_ENGINES[car.type].engine(
+                            elem.capacity
+                        )
+                    );
+                    isEngineValid = AVAILABLE_CAR_TYPE_ENGINES[car.type].engine(
+                        elem.capacity
+                    );
+                }
+
+                console.log("isvalid", isEngineValid);
+
+                return (
+                    <>
+                        <div>
+                            {`${elem.name} - ${elem.BHP} BHP - ${elem.capacity}L`}
+                        </div>
+                        <button disabled={!car || !isEngineValid}>
+                            {!isEngineValid && "Engine is to strong"}
+                            {isEngineValid && "Mount in car"}
+                        </button>
+                    </>
+                );
+            })}
+            <h2>My gearboxes</h2>
+            <h2>Car parameters</h2>
         </>
     );
 };
 
 const mapStateToProps = (state) => ({
     car: getMyCar(state),
+    engines: getUserEnginesList(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

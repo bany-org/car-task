@@ -42,25 +42,33 @@ const Market = ({ carsList, buyCar, fullGarage }) => {
         <>
             <TopBar />
             <h1>Market</h1>
-            <h3>Buy a car</h3>
+            {!fullGarage && <h3>Buy a car</h3>}
             {fullGarage && (
-                <h1>
-                    Your garage is full. Is You want to buy new car, first sell
-                    current one
-                </h1>
+                <>
+                    <h1>New car is in your garage</h1>
+                    <h3>
+                        Your garage is full. Is You want to buy new car, first
+                        sell current one
+                    </h3>
+                </>
             )}
-            <Board>
-                {carsList.map((elem) => {
-                    console.log("elem w mapowaniu", elem);
-                    return (
-                        <CarOffer key={elem.name} onClick={() => buyCar(elem)}>
-                            <div>{elem.name}</div>
-                            {CarTypesIcons[elem.type]}
-                            <div>Price: {elem.price}$</div>
-                        </CarOffer>
-                    );
-                })}
-            </Board>
+            {!fullGarage && (
+                <Board>
+                    {carsList.map((elem) => {
+                        console.log("elem w mapowaniu", elem);
+                        return (
+                            <CarOffer
+                                key={elem.name}
+                                onClick={() => buyCar(elem)}
+                            >
+                                <div>{elem.name}</div>
+                                {CarTypesIcons[elem.type]}
+                                <div>Price: {elem.price}$</div>
+                            </CarOffer>
+                        );
+                    })}
+                </Board>
+            )}
             <p>Zmiana auta</p>
             <p>Sprzedaż</p>
         </>

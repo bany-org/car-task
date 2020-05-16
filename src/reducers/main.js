@@ -4,6 +4,8 @@ import {
     BUY_CAR,
     UPDATE_CARS_LIST,
     SELL_CAR,
+    UPDATE_ENGINES_LIST,
+    BUY_ENGINE,
 } from "../constants/ActionTypes";
 
 import SpraySound from "../assets/SpraySound/SpraySound.mp3";
@@ -17,8 +19,12 @@ const initialState = {
     },
     carData: {
         carModel: null,
+        engine: null,
+        gearbox: null,
     },
+    userEnginesList: [],
     carsList: [],
+    enginesList: [],
 };
 
 function playSpraySound() {
@@ -105,6 +111,34 @@ export default function main(state = initialState, action) {
             return {
                 ...state,
                 carsList: action.carsList,
+            };
+
+        case UPDATE_ENGINES_LIST:
+            return {
+                ...state,
+                enginesList: action.enginesList,
+            };
+
+        case BUY_ENGINE:
+            if (state.resources.cash < action.model.price) {
+                return state;
+            }
+
+            const updatedEnginesList = state.enginesList.filter((obj) => {
+                return obj.name !== action.model.name;
+            });
+
+            const userEnginesList = [...state.userEnginesList];
+            userEnginesList.push(action.model);
+
+            return {
+                ...state,
+                resources: {
+                    ...state.resources,
+                    cash: state.resources.cash - action.model.price,
+                },
+                userEnginesList: userEnginesList,
+                enginesList: updatedEnginesList,
             };
 
         default:

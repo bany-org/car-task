@@ -4,7 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { connect } from "react-redux";
 
-import { updateCarsList } from "../actions";
+import { updateCarsList, updateEnginesList } from "../actions";
 
 import Garage from "./Garage/container";
 import Wiki from "./Wiki/container";
@@ -38,6 +38,33 @@ const carsList = [
     },
 ];
 
+const enginesList = [
+    {
+        name: "Twin Turbo",
+        capacity: 5.2,
+        BHP: 532,
+        price: 250,
+    },
+    {
+        name: "Turbo",
+        capacity: 4.2,
+        BHP: 443,
+        price: 200,
+    },
+    {
+        name: "Sport",
+        capacity: 3.6,
+        BHP: 374,
+        price: 150,
+    },
+    {
+        name: "City",
+        capacity: 2.0,
+        BHP: 166,
+        price: 100,
+    },
+];
+
 const Body = styled.div`
     margin: 0;
     min-height: 100vh;
@@ -45,13 +72,14 @@ const Body = styled.div`
     text-align: center;
 `;
 
-function App({ updateCarsList }) {
+function App({ updateCarsList, updateEnginesList }) {
     const [isLoading, changeLoading] = useState(true);
 
     useEffect(() => {
         axios.get(`https://swapi.dev/api/people/1`).then((res) => {
             // updateRecipesList(res.data);
             updateCarsList(carsList);
+            updateEnginesList(enginesList);
             changeLoading(false);
         });
     }, []);
@@ -84,6 +112,9 @@ function App({ updateCarsList }) {
 const mapDispatchToProps = (dispatch) => ({
     updateCarsList: (carsList) => {
         dispatch(updateCarsList(carsList));
+    },
+    updateEnginesList: (enginesList) => {
+        dispatch(updateEnginesList(enginesList));
     },
 });
 

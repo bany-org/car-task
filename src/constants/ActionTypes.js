@@ -13,4 +13,7 @@ export const CHANGE_CAR_COLOR = "CHANGE_CAR_COLOR";
 export const BUY_CAR = "BUY_CAR";
 
 export const UPDATE_CARS_LIST = "UPDATE_CARS_LIST";
+export const UPDATE_ENGINES_LIST = "UPDATE_ENGINES_LIST";
 export const SELL_CAR = "SELL_CAR";
+
+export const BUY_ENGINE = "BUY_ENGINE";
