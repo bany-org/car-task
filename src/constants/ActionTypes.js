@@ -10,3 +10,6 @@ export const UPDATE_CASH_AMOUNT = "UPDATE_CASH_AMOUNT";
 export const CHANGE_ENGINE = "CHANGE_ENGINE";
 export const ADD_CASH = "ADD_CASH";
 export const CHANGE_CAR_COLOR = "CHANGE_CAR_COLOR";
+export const BUY_CAR = "BUY_CAR";
+
+export const UPDATE_CARS_LIST = "UPDATE_CARS_LIST";

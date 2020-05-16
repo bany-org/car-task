@@ -1,23 +1,40 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
+import { connect } from "react-redux";
+
+// import { buyCar } from "../../actions"; seel a car?
+import { getMyCarsList } from "../../selectors";
+
 import TopBar from "../TopBar/TopBar";
 import CarColorChange from "../CarColorChange/CarColorChange";
 
+import CarPro from "../../assets/CarPro/CarPro";
 import CarUber from "../../assets/CarUber/CarUber";
+import CarWk from "../../assets/CarWk/CarWk";
+import CarStandard from "../../assets/CarStandard/CarStandard";
 
-const Car = styled.div`
-    width: 300px;
-    height: 10px;
-    background-color: red;
-
-    ${(props) =>
-        css`
-            background-color: ${props.color};
-        `}
+const CarOffer = styled.div`
+    min-width: 220px;
+    margin: 20px;
+    background-color: lightgray;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &:hover {
+        background-color: gray;
+    }
 `;
 
-const Garage = ({ carColor, changeCarColor, cash }) => {
+const carTypesIcons = {
+    PRO: <CarPro />,
+    UBER: <CarUber />,
+    STANDARD: <CarStandard />,
+    WK: <CarWk />,
+};
+
+const Garage = ({ carColor, changeCarColor, cash, myCarsList }) => {
     return (
         <>
             <TopBar />
@@ -30,8 +47,19 @@ const Garage = ({ carColor, changeCarColor, cash }) => {
                 />
             )}
             {cash < 100 && <div>Za mało kasy</div>}
+
             {/* <Car color={carColor} /> */}
-            <CarUber color={carColor} />
+            {/* <CarUber color={carColor} /> */}
+            {myCarsList.map((elem) => {
+                console.log("elem w mapowaniu", elem);
+                return (
+                    <CarOffer key={elem.name}>
+                        <div>{elem.name}</div>
+                        {carTypesIcons[elem.type]}
+                        <div>Value: {elem.price - 100}$</div>
+                    </CarOffer>
+                );
+            })}
             <p>Zmiana silnika</p>
             <p>Zmiana skrzyni</p>
             <h2>Dostępne części???</h2>
@@ -40,4 +68,14 @@ const Garage = ({ carColor, changeCarColor, cash }) => {
     );
 };
 
-export default Garage;
+const mapStateToProps = (state) => ({
+    myCarsList: getMyCarsList(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    // buyCar: (car) => {
+    //     dispatch(buyCar(car));
+    // },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Garage);

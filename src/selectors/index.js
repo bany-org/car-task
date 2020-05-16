@@ -13,6 +13,8 @@ export const getUserName = (state) => state.main.userData.name;
 // export const getCarSet = (state) => state.carSet;
 export const getUserCash = (state) => state.main.resources.cash;
 export const getCarColor = (state) => state.main.carData.colorHexCode;
+export const getCarsList = (state) => state.main.carsList;
+export const getMyCarsList = (state) => state.main.myCarsList;
 
 // export const getVisibleTodos = createSelector(
 //     [getVisibilityFilter, getTodos],

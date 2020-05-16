@@ -1,11 +1,22 @@
 import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
+
+import { buyCar } from "../../actions";
+import { getCarsList } from "../../selectors";
 
 import TopBar from "../TopBar/TopBar";
 import CarPro from "../../assets/CarPro/CarPro";
 import CarUber from "../../assets/CarUber/CarUber";
 import CarWk from "../../assets/CarWk/CarWk";
 import CarStandard from "../../assets/CarStandard/CarStandard";
+
+const CarTypesIcons = {
+    PRO: <CarPro />,
+    UBER: <CarUber />,
+    STANDARD: <CarStandard />,
+    WK: <CarWk />,
+};
 
 const Board = styled.div`
     display: flex;
@@ -26,29 +37,23 @@ const CarOffer = styled.div`
     }
 `;
 
-const Market = () => {
+const Market = ({ carsList, buyCar }) => {
     return (
         <>
             <TopBar />
             <h1>Market</h1>
             <h3>Buy a car</h3>
             <Board>
-                <CarOffer>
-                    <CarPro />
-                    <div>Price: 400$</div>
-                </CarOffer>
-                <CarOffer>
-                    <CarUber />
-                    <div>Price: 300$</div>
-                </CarOffer>
-                <CarOffer>
-                    <CarStandard />
-                    <div>Price: 200$</div>
-                </CarOffer>
-                <CarOffer>
-                    <CarWk />
-                    <div>Price: 100$</div>
-                </CarOffer>
+                {carsList.map((elem) => {
+                    console.log("elem w mapowaniu", elem);
+                    return (
+                        <CarOffer key={elem.name} onClick={() => buyCar(elem)}>
+                            <div>{elem.name}</div>
+                            {CarTypesIcons[elem.type]}
+                            <div>Price: {elem.price}$</div>
+                        </CarOffer>
+                    );
+                })}
             </Board>
             <p>Zmiana auta</p>
             <p>Sprzedaż</p>
@@ -56,4 +61,14 @@ const Market = () => {
     );
 };
 
-export default Market;
+const mapStateToProps = (state) => ({
+    carsList: getCarsList(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    buyCar: (car) => {
+        dispatch(buyCar(car));
+    },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Market);

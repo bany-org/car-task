@@ -1,4 +1,9 @@
-import { CHANGE_CAR_COLOR, ADD_CASH } from "../constants/ActionTypes";
+import {
+    CHANGE_CAR_COLOR,
+    ADD_CASH,
+    BUY_CAR,
+    UPDATE_CARS_LIST,
+} from "../constants/ActionTypes";
 
 import SpraySound from "../assets/SpraySound/SpraySound.mp3";
 
@@ -11,7 +16,10 @@ const initialState = {
     },
     carData: {
         colorHexCode: "#000000",
+        carModel: {},
     },
+    carsList: [],
+    myCarsList: [],
 };
 
 function playSpraySound() {
@@ -49,6 +57,38 @@ export default function main(state = initialState, action) {
                     ...state.resources,
                     cash: state.resources.cash + 100,
                 },
+            };
+
+        case BUY_CAR:
+            if (state.resources.cash < action.car.price) {
+                return state;
+            }
+
+            const updatedList = state.carsList.filter((obj) => {
+                return obj.name !== action.car.name;
+            });
+
+            const myCars = [...state.myCarsList];
+            myCars.push(action.car);
+
+            return {
+                ...state,
+                resources: {
+                    ...state.resources,
+                    cash: state.resources.cash - action.car.price,
+                },
+                carData: {
+                    ...state.carData,
+                    carModel: action.car,
+                },
+                carsList: updatedList,
+                myCarsList: myCars,
+            };
+
+        case UPDATE_CARS_LIST:
+            return {
+                ...state,
+                carsList: action.carsList,
             };
 
         default:

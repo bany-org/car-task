@@ -12,7 +12,18 @@ export const setVisibilityFilter = (filter) => ({
 });
 
 export const addCash = () => ({ type: types.ADD_CASH });
+
 export const changeCarColor = (colorHexCode) => ({
     type: types.CHANGE_CAR_COLOR,
     colorHexCode,
+});
+
+export const buyCar = (car) => ({
+    type: types.BUY_CAR,
+    car,
+});
+
+export const updateCarsList = (carsList) => ({
+    type: types.UPDATE_CARS_LIST,
+    carsList,
 });

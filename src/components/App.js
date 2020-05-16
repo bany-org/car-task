@@ -2,11 +2,37 @@ import React, { useEffect, useState } from "react";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
+import { connect } from "react-redux";
+
+import { updateCarsList } from "../actions";
 
 import Garage from "./Garage/container";
 import Wiki from "./Wiki/container";
 import PartsShop from "./PartsShop/PartsShop";
 import Market from "./Market/Market";
+
+const carsList = [
+    {
+        name: "PRO RS3",
+        price: 400,
+        type: "PRO",
+    },
+    {
+        name: "UBER RS2",
+        price: 300,
+        type: "UBER",
+    },
+    {
+        name: "STANDARD",
+        price: 200,
+        type: "STANDARD",
+    },
+    {
+        name: "WK",
+        price: 100,
+        type: "WK",
+    },
+];
 
 const Body = styled.div`
     margin: 0;
@@ -15,12 +41,13 @@ const Body = styled.div`
     text-align: center;
 `;
 
-function App() {
+function App({ updateCarsList }) {
     const [isLoading, changeLoading] = useState(true);
 
     useEffect(() => {
         axios.get(`https://swapi.dev/api/people/1`).then((res) => {
             // updateRecipesList(res.data);
+            updateCarsList(carsList);
             changeLoading(false);
         });
     }, []);
@@ -50,4 +77,10 @@ function App() {
     );
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+    updateCarsList: (carsList) => {
+        dispatch(updateCarsList(carsList));
+    },
+});
+
+export default connect(null, mapDispatchToProps)(App);
