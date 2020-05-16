@@ -3,8 +3,8 @@ import styled, { css } from "styled-components";
 
 import { connect } from "react-redux";
 
-// import { buyCar } from "../../actions"; seel a car?
-import { getMyCarsList } from "../../selectors";
+import { changeCarColor, sellCar } from "../../actions";
+import { getMyCar } from "../../selectors";
 
 import TopBar from "../TopBar/TopBar";
 import CarColorChange from "../CarColorChange/CarColorChange";
@@ -34,32 +34,52 @@ const carTypesIcons = {
     WK: <CarWk />,
 };
 
-const Garage = ({ carColor, changeCarColor, cash, myCarsList }) => {
+const renderCarIcon = (type, color) => {
+    switch (type) {
+        case "PRO":
+            return <CarPro color={color} />;
+
+        case "UBER":
+            return <CarUber color={color} />;
+
+        case "STANDARD":
+            return <CarStandard color={color} />;
+
+        case "WK":
+            return <CarWk color={color} />;
+
+        default:
+            return;
+    }
+};
+
+const Garage = ({ car, changeCarColor, cash, sellCar }) => {
+    console.log("garage", car?.color);
+
     return (
         <>
             <TopBar />
             <h1>Garage</h1>
-            <p>Zmiana koloru</p>
-            {cash >= 100 && (
-                <CarColorChange
-                    carColor={carColor}
-                    changeColor={changeCarColor}
-                />
+            {car && (
+                <CarOffer>
+                    <div>{car.name}</div>
+                    {renderCarIcon(car.type, car.color)}
+                    {/* {carTypesIcons[car.type]} */}
+                    <div>Value: {car.price - 100}$</div>
+                    <button onClick={sellCar}>SELL</button>
+                </CarOffer>
             )}
-            {cash < 100 && <div>Za mało kasy</div>}
+            {cash < 100 && <div>Za mało kasy by pomalować!</div>}
+            {car && cash >= 100 && (
+                <>
+                    <p>Zmiana koloru - 100$</p>
+                    <CarColorChange
+                        carColor={car?.color}
+                        changeColor={changeCarColor}
+                    />
+                </>
+            )}
 
-            {/* <Car color={carColor} /> */}
-            {/* <CarUber color={carColor} /> */}
-            {myCarsList.map((elem) => {
-                console.log("elem w mapowaniu", elem);
-                return (
-                    <CarOffer key={elem.name}>
-                        <div>{elem.name}</div>
-                        {carTypesIcons[elem.type]}
-                        <div>Value: {elem.price - 100}$</div>
-                    </CarOffer>
-                );
-            })}
             <p>Zmiana silnika</p>
             <p>Zmiana skrzyni</p>
             <h2>Dostępne części???</h2>
@@ -69,13 +89,16 @@ const Garage = ({ carColor, changeCarColor, cash, myCarsList }) => {
 };
 
 const mapStateToProps = (state) => ({
-    myCarsList: getMyCarsList(state),
+    car: getMyCar(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    // buyCar: (car) => {
-    //     dispatch(buyCar(car));
-    // },
+    changeCarColor: (color) => {
+        dispatch(changeCarColor(color));
+    },
+    sellCar: () => {
+        dispatch(sellCar());
+    },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Garage);

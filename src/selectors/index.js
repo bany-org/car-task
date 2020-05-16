@@ -14,7 +14,9 @@ export const getUserName = (state) => state.main.userData.name;
 export const getUserCash = (state) => state.main.resources.cash;
 export const getCarColor = (state) => state.main.carData.colorHexCode;
 export const getCarsList = (state) => state.main.carsList;
-export const getMyCarsList = (state) => state.main.myCarsList;
+export const getMyCar = (state) => state.main.carData.carModel;
+export const isGarageFull = (state) =>
+    state.main.carData.carModel ? true : false;
 
 // export const getVisibleTodos = createSelector(
 //     [getVisibilityFilter, getTodos],

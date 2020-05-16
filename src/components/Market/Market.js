@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 
 import { buyCar } from "../../actions";
-import { getCarsList } from "../../selectors";
+import { getCarsList, isGarageFull } from "../../selectors";
 
 import TopBar from "../TopBar/TopBar";
 import CarPro from "../../assets/CarPro/CarPro";
@@ -37,12 +37,18 @@ const CarOffer = styled.div`
     }
 `;
 
-const Market = ({ carsList, buyCar }) => {
+const Market = ({ carsList, buyCar, fullGarage }) => {
     return (
         <>
             <TopBar />
             <h1>Market</h1>
             <h3>Buy a car</h3>
+            {fullGarage && (
+                <h1>
+                    Your garage is full. Is You want to buy new car, first sell
+                    current one
+                </h1>
+            )}
             <Board>
                 {carsList.map((elem) => {
                     console.log("elem w mapowaniu", elem);
@@ -63,6 +69,7 @@ const Market = ({ carsList, buyCar }) => {
 
 const mapStateToProps = (state) => ({
     carsList: getCarsList(state),
+    fullGarage: isGarageFull(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

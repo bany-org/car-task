@@ -3,6 +3,7 @@ import {
     ADD_CASH,
     BUY_CAR,
     UPDATE_CARS_LIST,
+    SELL_CAR,
 } from "../constants/ActionTypes";
 
 import SpraySound from "../assets/SpraySound/SpraySound.mp3";
@@ -15,11 +16,9 @@ const initialState = {
         cash: 500,
     },
     carData: {
-        colorHexCode: "#000000",
-        carModel: {},
+        carModel: null,
     },
     carsList: [],
-    myCarsList: [],
 };
 
 function playSpraySound() {
@@ -32,7 +31,7 @@ export default function main(state = initialState, action) {
         case CHANGE_CAR_COLOR:
             if (
                 state.resources.cash < 100 ||
-                state.carData.colorHexCode === action.colorHexCode
+                state.carData.carModel.color === action.colorHexCode.hex
             ) {
                 return state;
             } else {
@@ -43,7 +42,10 @@ export default function main(state = initialState, action) {
                 ...state,
                 carData: {
                     ...state.carData,
-                    colorHexCode: action.colorHexCode,
+                    carModel: {
+                        ...state.carData.carModel,
+                        color: action.colorHexCode.hex,
+                    },
                 },
                 resources: {
                     ...state.resources,
@@ -60,16 +62,16 @@ export default function main(state = initialState, action) {
             };
 
         case BUY_CAR:
-            if (state.resources.cash < action.car.price) {
+            if (
+                state.resources.cash < action.car.price ||
+                state.carData.carModel
+            ) {
                 return state;
             }
 
             const updatedList = state.carsList.filter((obj) => {
                 return obj.name !== action.car.name;
             });
-
-            const myCars = [...state.myCarsList];
-            myCars.push(action.car);
 
             return {
                 ...state,
@@ -82,7 +84,21 @@ export default function main(state = initialState, action) {
                     carModel: action.car,
                 },
                 carsList: updatedList,
-                myCarsList: myCars,
+            };
+
+        case SELL_CAR:
+            const updatedCarsList = [...state.carsList];
+            updatedCarsList.push(state.carData.carModel);
+            const sellValue = state.carData.carModel.price - 100;
+            return {
+                ...state,
+                carData: {
+                    carModel: null,
+                },
+                resources: {
+                    cash: state.resources.cash + sellValue,
+                },
+                carsList: updatedCarsList,
             };
 
         case UPDATE_CARS_LIST:

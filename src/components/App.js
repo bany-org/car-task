@@ -16,21 +16,25 @@ const carsList = [
         name: "PRO RS3",
         price: 400,
         type: "PRO",
+        color: "#000000",
     },
     {
         name: "UBER RS2",
         price: 300,
         type: "UBER",
+        color: "#000000",
     },
     {
         name: "STANDARD",
         price: 200,
         type: "STANDARD",
+        color: "#000000",
     },
     {
         name: "WK",
         price: 100,
         type: "WK",
+        color: "#000000",
     },
 ];
 
