@@ -1,10 +1,9 @@
+// "Icon made by Freepik from www.flaticon.com"
+
 import React from "react";
 
-const CarSedan = ({ color }) => {
+const CarUber = ({ color }) => {
     return (
-        //         <?xml version="1.0" encoding="iso-8859-1"?>
-        // <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-        // <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
         <svg
             version="1.1"
             id="Capa_1"
@@ -15,7 +14,6 @@ const CarSedan = ({ color }) => {
             width="98.967px"
             height="98.967px"
             viewBox="0 0 98.967 98.967"
-            // style={ 'enable-background': new 0 0 98.967 98.967 }
             space="preserve"
             fill={color}
         >
@@ -64,4 +62,4 @@ const CarSedan = ({ color }) => {
     );
 };
 
-export default CarSedan;
+export default CarUber;

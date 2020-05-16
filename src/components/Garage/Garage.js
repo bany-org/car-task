@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import TopBar from "../TopBar/TopBar";
 import CarColorChange from "../CarColorChange/CarColorChange";
 
-import CarSedan from "../../assets/CarSedan/CarSedan";
+import CarUber from "../../assets/CarUber/CarUber";
 
 const Car = styled.div`
     width: 300px;
@@ -31,7 +31,7 @@ const Garage = ({ carColor, changeCarColor, cash }) => {
             )}
             {cash < 100 && <div>Za mało kasy</div>}
             {/* <Car color={carColor} /> */}
-            <CarSedan color={carColor} />
+            <CarUber color={carColor} />
             <p>Zmiana silnika</p>
             <p>Zmiana skrzyni</p>
             <h2>Dostępne części???</h2>

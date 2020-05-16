@@ -8,6 +8,9 @@ const Button = styled.button`
     background-color: lightgray;
     margin: 5px 10px;
     border-radius: 15px;
+    &:hover {
+        background-color: gray;
+    }
 `;
 const NavigationButton = (props) => {
     return (
