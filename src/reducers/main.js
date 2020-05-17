@@ -106,10 +106,12 @@ export default function main(state = initialState, action) {
                     ...state.carData,
                     carModel: action.car,
                 },
-                markerCarsList: updatedMarketCarsList,
+                marketCarsList: updatedMarketCarsList,
             };
 
         case SELL_CAR:
+            console.log("sell car", state.marketCarsList);
+
             updatedMarketCarsList.push(state.carData.carModel);
             const sellValue = state.carData.carModel.price - 100;
 
