@@ -6,7 +6,7 @@ import TopBar from "../TopBar/TopBar";
 const Main = ({ addCash }) => {
     return (
         <div>
-            <TopBar />
+            <h1>Wiki</h1>
             <p>
                 Wiki - tutaj dać info o samochodach - jak silnik pasuje do
                 jakiego nadwozia i jakiej skrzyni itd

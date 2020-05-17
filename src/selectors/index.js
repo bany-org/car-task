@@ -18,7 +18,13 @@ export const getMyCar = (state) => state.main.carData.carModel;
 export const isGarageFull = (state) =>
     state.main.carData.carModel ? true : false;
 export const getEnginesList = (state) => state.main.enginesList;
+export const getGearboxesList = (state) => state.main.gearboxesList;
+
 export const getUserEnginesList = (state) => state.main.userEnginesList;
+export const getMountedEngine = (state) => state.main.mountedEngine;
+
+export const getUserGearboxes = (state) => state.main.userGearboxesList;
+export const getMountedGearbox = (state) => state.main.mountedGearbox;
 
 // export const getVisibleTodos = createSelector(
 //     [getVisibilityFilter, getTodos],

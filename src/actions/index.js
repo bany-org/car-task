@@ -41,3 +41,18 @@ export const buyEngine = (model) => ({
     type: types.BUY_ENGINE,
     model,
 });
+
+export const buyGearbox = (model) => ({
+    type: types.BUY_GEARBOX,
+    model,
+});
+
+export const mountEngine = (model) => ({
+    type: types.MOUNT_ENGINE,
+    model,
+});
+
+export const updateGearboxesList = (gearboxesList) => ({
+    type: types.UPDATE_GEARBOXES_LIST,
+    gearboxesList,
+});

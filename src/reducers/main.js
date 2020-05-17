@@ -6,6 +6,9 @@ import {
     SELL_CAR,
     UPDATE_ENGINES_LIST,
     BUY_ENGINE,
+    MOUNT_ENGINE,
+    UPDATE_GEARBOXES_LIST,
+    BUY_GEARBOX,
 } from "../constants/ActionTypes";
 
 import SpraySound from "../assets/SpraySound/SpraySound.mp3";
@@ -15,16 +18,23 @@ const initialState = {
         name: "John Doe",
     },
     resources: {
-        cash: 500,
+        cash: 1500,
     },
     carData: {
         carModel: null,
         engine: null,
         gearbox: null,
     },
+
+    mountedEngine: null,
     userEnginesList: [],
+
+    mountedGearbox: null,
+    userGearboxesList: [],
+
     carsList: [],
     enginesList: [],
+    gearboxesList: [],
 };
 
 function playSpraySound() {
@@ -33,6 +43,10 @@ function playSpraySound() {
 }
 
 export default function main(state = initialState, action) {
+    let updatedEnginesList = [...state.enginesList];
+    let updatedCarsList = [...state.carsList];
+    let userEnginesList = [...state.userEnginesList];
+
     switch (action.type) {
         case CHANGE_CAR_COLOR:
             if (
@@ -93,9 +107,16 @@ export default function main(state = initialState, action) {
             };
 
         case SELL_CAR:
-            const updatedCarsList = [...state.carsList];
+            updatedCarsList = [...state.carsList];
             updatedCarsList.push(state.carData.carModel);
             const sellValue = state.carData.carModel.price - 100;
+
+            updatedEnginesList = [...state.enginesList];
+
+            if (state.mountedEngine) {
+                updatedEnginesList.push(state.mountedEngine);
+            }
+
             return {
                 ...state,
                 carData: {
@@ -105,6 +126,8 @@ export default function main(state = initialState, action) {
                     cash: state.resources.cash + sellValue,
                 },
                 carsList: updatedCarsList,
+                enginesList: updatedEnginesList,
+                mountedEngine: null,
             };
 
         case UPDATE_CARS_LIST:
@@ -119,16 +142,22 @@ export default function main(state = initialState, action) {
                 enginesList: action.enginesList,
             };
 
+        case UPDATE_GEARBOXES_LIST:
+            return {
+                ...state,
+                gearboxesList: action.gearboxesList,
+            };
+
         case BUY_ENGINE:
             if (state.resources.cash < action.model.price) {
                 return state;
             }
 
-            const updatedEnginesList = state.enginesList.filter((obj) => {
+            updatedEnginesList = state.enginesList.filter((obj) => {
                 return obj.name !== action.model.name;
             });
 
-            const userEnginesList = [...state.userEnginesList];
+            userEnginesList = [...state.userEnginesList];
             userEnginesList.push(action.model);
 
             return {
@@ -139,6 +168,48 @@ export default function main(state = initialState, action) {
                 },
                 userEnginesList: userEnginesList,
                 enginesList: updatedEnginesList,
+            };
+
+        case MOUNT_ENGINE:
+            console.log(action.model);
+
+            let userEngines = [...state.userEnginesList];
+
+            if (state.mountedEngine) {
+                userEngines.push(state.mountedEngine);
+            }
+            console.log("mount", action.model);
+
+            const updatedUserEnginesList = userEngines.filter((obj) => {
+                return obj.name !== action.model.name;
+            });
+
+            return {
+                ...state,
+                mountedEngine: action.model,
+                userEnginesList: updatedUserEnginesList,
+            };
+
+        case BUY_GEARBOX:
+            if (state.resources.cash < action.model.price) {
+                return state;
+            }
+
+            const updatedGearboxesList = state.gearboxesList.filter((obj) => {
+                return obj.type !== action.model.type;
+            });
+
+            const userGearboxesList = [...state.userGearboxesList];
+            userGearboxesList.push(action.model);
+
+            return {
+                ...state,
+                resources: {
+                    ...state.resources,
+                    cash: state.resources.cash - action.model.price,
+                },
+                userGearboxesList: userGearboxesList,
+                gearboxesList: updatedGearboxesList,
             };
 
         default:

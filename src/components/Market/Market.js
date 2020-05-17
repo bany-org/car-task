@@ -40,7 +40,6 @@ const CarOffer = styled.div`
 const Market = ({ carsList, buyCar, fullGarage }) => {
     return (
         <>
-            <TopBar />
             <h1>Market</h1>
             {!fullGarage && <h3>Buy a car</h3>}
             {fullGarage && (
@@ -69,8 +68,6 @@ const Market = ({ carsList, buyCar, fullGarage }) => {
                     })}
                 </Board>
             )}
-            <p>Zmiana auta</p>
-            <p>Sprzedaż</p>
         </>
     );
 };

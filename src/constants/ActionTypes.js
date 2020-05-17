@@ -14,6 +14,11 @@ export const BUY_CAR = "BUY_CAR";
 
 export const UPDATE_CARS_LIST = "UPDATE_CARS_LIST";
 export const UPDATE_ENGINES_LIST = "UPDATE_ENGINES_LIST";
+export const UPDATE_GEARBOXES_LIST = "UPDATE_GEARBOXES_LIST";
+
 export const SELL_CAR = "SELL_CAR";
 
 export const BUY_ENGINE = "BUY_ENGINE";
+export const MOUNT_ENGINE = "MOUNT_ENGINE";
+
+export const BUY_GEARBOX = "BUY_GEARBOX";
