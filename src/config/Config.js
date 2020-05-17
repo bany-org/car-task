@@ -28,27 +28,27 @@ export const CAR_TYPE_AVAILABLE_CONFIGURATION = {
     PRO: {
         engine: (capacity) =>
             capacity <= CAR_TYPE_MAX_ENGINE_CAPACITY.PRO ? true : false,
-        gearbox: (type) => (type === GEARBOX_TYPES.AUTOMATIC ? true : false),
+        // gearbox: (type) => (type === GEARBOX_TYPES.AUTOMATIC ? true : false),
     },
     UBER: {
         engine: (capacity) =>
             capacity <= CAR_TYPE_MAX_ENGINE_CAPACITY.UBER ? true : false,
-        gearbox: (type) => (type === GEARBOX_TYPES.AUTOMATIC ? true : false),
+        // gearbox: (type) => (type === GEARBOX_TYPES.AUTOMATIC ? true : false),
     },
     STANDARD: {
         engine: (capacity) =>
             capacity <= CAR_TYPE_MAX_ENGINE_CAPACITY.STANDARD ? true : false,
-        gearbox: (type) =>
-            type === GEARBOX_TYPES.AUTOMATIC || type === GEARBOX_TYPES.MANUAL
-                ? true
-                : false,
+        // gearbox: (type) =>
+        //     type === GEARBOX_TYPES.AUTOMATIC || type === GEARBOX_TYPES.MANUAL
+        //         ? true
+        //         : false,
     },
     WK: {
         engine: (capacity) =>
             capacity <= CAR_TYPE_MAX_ENGINE_CAPACITY.WK ? true : false,
-        gearbox: (type) =>
-            type === GEARBOX_TYPES.AUTOMATIC || type === GEARBOX_TYPES.MANUAL
-                ? true
-                : false,
+        // gearbox: (type) =>
+        //     type === GEARBOX_TYPES.AUTOMATIC || type === GEARBOX_TYPES.MANUAL
+        //         ? true
+        //         : false,
     },
 };

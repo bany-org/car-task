@@ -22,3 +22,4 @@ export const BUY_ENGINE = "BUY_ENGINE";
 export const MOUNT_ENGINE = "MOUNT_ENGINE";
 
 export const BUY_GEARBOX = "BUY_GEARBOX";
+export const MOUNT_GEARBOX = "MOUNT_GEARBOX";

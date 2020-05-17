@@ -52,6 +52,11 @@ export const mountEngine = (model) => ({
     model,
 });
 
+export const mountGearbox = (model) => ({
+    type: types.MOUNT_GEARBOX,
+    model,
+});
+
 export const updateGearboxesList = (gearboxesList) => ({
     type: types.UPDATE_GEARBOXES_LIST,
     gearboxesList,

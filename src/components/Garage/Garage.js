@@ -4,7 +4,12 @@ import styled, { css } from "styled-components";
 
 import { CAR_TYPE_AVAILABLE_CONFIGURATION } from "../../config/Config";
 
-import { changeCarColor, sellCar, mountEngine } from "../../actions";
+import {
+    changeCarColor,
+    sellCar,
+    mountEngine,
+    mountGearbox,
+} from "../../actions";
 import {
     getMyCar,
     getUserEnginesList,
@@ -19,6 +24,8 @@ import CarPro from "../../assets/CarPro/CarPro";
 import CarUber from "../../assets/CarUber/CarUber";
 import CarWk from "../../assets/CarWk/CarWk";
 import CarStandard from "../../assets/CarStandard/CarStandard";
+
+import GarageImage from "../../assets/images/rob-walsh-unsplash.jpg";
 
 const CarOffer = styled.div`
     min-width: 220px;
@@ -52,45 +59,80 @@ const renderCarIcon = (type, color) => {
     }
 };
 
+const Body = styled.div`
+    padding: 20px;
+`;
+
+const CarPlaceholder = styled.div``;
+
 const Garage = ({
     car,
     changeCarColor,
     cash,
     sellCar,
     engines,
-    mountedEngine,
     mountEngine,
+    mountedEngine,
     gearboxes,
+    mountGearbox,
+    mountedGearbox,
 }) => {
-    console.log("garage", car?.color);
-
     return (
-        <>
+        <Body>
             <h1>Garage</h1>
-            <div>
+            <CarPlaceholder>
                 {car && (
                     <>
                         <h2>Car parameters</h2>
-                        <p>{`Name: ${car.name}`}</p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Engine</th>
+                                    <th>Engine capacity</th>
+                                    <th>BHP</th>
+                                    <th>Gearbox</th>
+                                    <th>Sell value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{car.name}</td>
+                                    <td>
+                                        {mountedEngine
+                                            ? mountedEngine.name
+                                            : "---"}
+                                    </td>
+                                    <td>
+                                        {mountedEngine
+                                            ? `${mountedEngine.capacity} L`
+                                            : "---"}
+                                    </td>
+                                    <td>
+                                        {mountedEngine
+                                            ? `${mountedEngine.BHP} `
+                                            : "---"}
+                                    </td>
+                                    <td>
+                                        {mountedGearbox
+                                            ? mountedGearbox.type
+                                            : "---"}
+                                    </td>
+                                    <td>{`${car.price - 100}$`}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </>
                 )}
-                {mountedEngine && (
-                    <div>
-                        <p>{`Engine name: ${mountedEngine.name}`}</p>
-                        <p>{`Engine capacity: ${mountedEngine.capacity}`}</p>
-                    </div>
+                {car && (
+                    <>
+                        <CarOffer>
+                            {renderCarIcon(car.type, car.color)}
+                            <button onClick={sellCar}>SELL</button>
+                        </CarOffer>
+                    </>
                 )}
-            </div>
-            {car && (
-                <>
-                    <CarOffer>
-                        <div>{car.name}</div>
-                        {renderCarIcon(car.type, car.color)}
-                        <div>Value: {car.price - 100}$</div>
-                        <button onClick={sellCar}>SELL</button>
-                    </CarOffer>
-                </>
-            )}
+            </CarPlaceholder>
             {cash < 100 && <div>Za mało kasy by pomalować!</div>}
             {car && cash >= 100 && (
                 <>
@@ -107,12 +149,6 @@ const Garage = ({
                 engines.map((elem) => {
                     let isEngineValid = false;
                     if (car) {
-                        console.log(
-                            "if",
-                            CAR_TYPE_AVAILABLE_CONFIGURATION[car.type].engine(
-                                elem.capacity
-                            )
-                        );
                         isEngineValid = CAR_TYPE_AVAILABLE_CONFIGURATION[
                             car.type
                         ].engine(elem.capacity);
@@ -137,9 +173,20 @@ const Garage = ({
             <h2>My gearboxes</h2>
             {gearboxes &&
                 gearboxes.map((elem) => {
-                    return <p>{elem.type}</p>;
+                    return (
+                        <div>
+                            {elem.type}
+
+                            <button
+                                onClick={() => mountGearbox(elem)}
+                                disabled={!mountedEngine}
+                            >
+                                Mount in car
+                            </button>
+                        </div>
+                    );
                 })}
-        </>
+        </Body>
     );
 };
 
@@ -160,6 +207,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     mountEngine: (model) => {
         dispatch(mountEngine(model));
+    },
+    mountGearbox: (model) => {
+        dispatch(mountGearbox(model));
     },
 });
 

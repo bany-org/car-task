@@ -1,14 +1,15 @@
 import {
+    UPDATE_CARS_LIST,
+    UPDATE_ENGINES_LIST,
+    UPDATE_GEARBOXES_LIST,
     CHANGE_CAR_COLOR,
     ADD_CASH,
     BUY_CAR,
-    UPDATE_CARS_LIST,
     SELL_CAR,
-    UPDATE_ENGINES_LIST,
     BUY_ENGINE,
     MOUNT_ENGINE,
-    UPDATE_GEARBOXES_LIST,
     BUY_GEARBOX,
+    MOUNT_GEARBOX,
 } from "../constants/ActionTypes";
 
 import SpraySound from "../assets/SpraySound/SpraySound.mp3";
@@ -22,8 +23,6 @@ const initialState = {
     },
     carData: {
         carModel: null,
-        engine: null,
-        gearbox: null,
     },
 
     mountedEngine: null,
@@ -32,9 +31,9 @@ const initialState = {
     mountedGearbox: null,
     userGearboxesList: [],
 
-    carsList: [],
-    enginesList: [],
-    gearboxesList: [],
+    marketCarsList: [],
+    shopEnginesList: [],
+    shopGearboxesList: [],
 };
 
 function playSpraySound() {
@@ -43,9 +42,13 @@ function playSpraySound() {
 }
 
 export default function main(state = initialState, action) {
-    let updatedEnginesList = [...state.enginesList];
-    let updatedCarsList = [...state.carsList];
-    let userEnginesList = [...state.userEnginesList];
+    let updatedMarketCarsList = [...state.marketCarsList];
+
+    let updatedUserEnginesList = [...state.userEnginesList];
+    let updatedShopEnginesList = [...state.shopEnginesList];
+
+    let updatedUserGearboxesList = [...state.userGearboxesList];
+    let updatedShopGearboxesList = [...state.shopGearboxesList];
 
     switch (action.type) {
         case CHANGE_CAR_COLOR:
@@ -89,7 +92,7 @@ export default function main(state = initialState, action) {
                 return state;
             }
 
-            const updatedList = state.carsList.filter((obj) => {
+            updatedMarketCarsList = state.marketCarsList.filter((obj) => {
                 return obj.name !== action.car.name;
             });
 
@@ -103,18 +106,15 @@ export default function main(state = initialState, action) {
                     ...state.carData,
                     carModel: action.car,
                 },
-                carsList: updatedList,
+                markerCarsList: updatedMarketCarsList,
             };
 
         case SELL_CAR:
-            updatedCarsList = [...state.carsList];
-            updatedCarsList.push(state.carData.carModel);
+            updatedMarketCarsList.push(state.carData.carModel);
             const sellValue = state.carData.carModel.price - 100;
 
-            updatedEnginesList = [...state.enginesList];
-
             if (state.mountedEngine) {
-                updatedEnginesList.push(state.mountedEngine);
+                updatedShopEnginesList.push(state.mountedEngine);
             }
 
             return {
@@ -125,27 +125,27 @@ export default function main(state = initialState, action) {
                 resources: {
                     cash: state.resources.cash + sellValue,
                 },
-                carsList: updatedCarsList,
-                enginesList: updatedEnginesList,
+                marketCarsList: updatedMarketCarsList,
+                shopEnginesList: updatedShopEnginesList,
                 mountedEngine: null,
             };
 
         case UPDATE_CARS_LIST:
             return {
                 ...state,
-                carsList: action.carsList,
+                marketCarsList: action.carsList,
             };
 
         case UPDATE_ENGINES_LIST:
             return {
                 ...state,
-                enginesList: action.enginesList,
+                shopEnginesList: action.enginesList,
             };
 
         case UPDATE_GEARBOXES_LIST:
             return {
                 ...state,
-                gearboxesList: action.gearboxesList,
+                shopGearboxesList: action.gearboxesList,
             };
 
         case BUY_ENGINE:
@@ -153,12 +153,11 @@ export default function main(state = initialState, action) {
                 return state;
             }
 
-            updatedEnginesList = state.enginesList.filter((obj) => {
+            updatedShopEnginesList = state.shopEnginesList.filter((obj) => {
                 return obj.name !== action.model.name;
             });
 
-            userEnginesList = [...state.userEnginesList];
-            userEnginesList.push(action.model);
+            updatedUserEnginesList.push(action.model);
 
             return {
                 ...state,
@@ -166,21 +165,16 @@ export default function main(state = initialState, action) {
                     ...state.resources,
                     cash: state.resources.cash - action.model.price,
                 },
-                userEnginesList: userEnginesList,
-                enginesList: updatedEnginesList,
+                userEnginesList: updatedUserEnginesList,
+                shopEnginesList: updatedShopEnginesList,
             };
 
         case MOUNT_ENGINE:
-            console.log(action.model);
-
-            let userEngines = [...state.userEnginesList];
-
             if (state.mountedEngine) {
-                userEngines.push(state.mountedEngine);
+                updatedUserEnginesList.push(state.mountedEngine);
             }
-            console.log("mount", action.model);
 
-            const updatedUserEnginesList = userEngines.filter((obj) => {
+            updatedUserEnginesList = updatedUserEnginesList.filter((obj) => {
                 return obj.name !== action.model.name;
             });
 
@@ -195,12 +189,11 @@ export default function main(state = initialState, action) {
                 return state;
             }
 
-            const updatedGearboxesList = state.gearboxesList.filter((obj) => {
+            updatedShopGearboxesList = state.shopGearboxesList.filter((obj) => {
                 return obj.type !== action.model.type;
             });
 
-            const userGearboxesList = [...state.userGearboxesList];
-            userGearboxesList.push(action.model);
+            updatedUserGearboxesList.push(action.model);
 
             return {
                 ...state,
@@ -208,8 +201,25 @@ export default function main(state = initialState, action) {
                     ...state.resources,
                     cash: state.resources.cash - action.model.price,
                 },
-                userGearboxesList: userGearboxesList,
-                gearboxesList: updatedGearboxesList,
+                userGearboxesList: updatedUserGearboxesList,
+                shopGearboxesList: updatedShopGearboxesList,
+            };
+
+        case MOUNT_GEARBOX:
+            if (state.mountedGearbox) {
+                updatedUserGearboxesList.push(state.mountedGearbox);
+            }
+
+            updatedUserGearboxesList = updatedUserGearboxesList.filter(
+                (obj) => {
+                    return obj.type !== action.model.type;
+                }
+            );
+
+            return {
+                ...state,
+                mountedGearbox: action.model,
+                userGearboxesList: updatedUserGearboxesList,
             };
 
         default:
