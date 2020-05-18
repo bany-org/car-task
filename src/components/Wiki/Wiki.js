@@ -15,7 +15,6 @@ const Requirements = styled.div`
 const Main = ({ addCash }) => {
     return (
         <Body>
-            <h1>Wiki</h1>
             <Requirements>
                 <h3>Requirements</h3>
                 <ul>

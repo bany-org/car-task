@@ -24,7 +24,6 @@ const Data = styled.td`
 const PartsShop = ({ enginesList, buyEngine, gearboxesList, buyGearbox }) => {
     return (
         <Body>
-            <h1>Parts shop</h1>
             <h1>Engines</h1>
             {enginesList.length > 0 && (
                 <PartsList>

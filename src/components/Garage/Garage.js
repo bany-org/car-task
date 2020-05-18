@@ -79,7 +79,6 @@ const Garage = ({
 }) => {
     return (
         <Body>
-            <h1>Garage</h1>
             <CarDetails
                 car={car}
                 engine={mountedEngine}

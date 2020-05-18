@@ -68,7 +68,6 @@ const OfferButton = styled.div`
 const Market = ({ carsList, buyCar, fullGarage }) => {
     return (
         <>
-            <h1>Market</h1>
             {fullGarage && (
                 <>
                     <h1>New car is in your garage</h1>

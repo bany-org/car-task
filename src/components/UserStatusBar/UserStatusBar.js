@@ -6,15 +6,22 @@ import Driver from "../../assets/Driver/Driver";
 
 const InfoBar = styled.div`
     display: flex;
-    justify-content: center;
-    border-bottom: 1px dotted black;
+    justify-content: space-around;
+    align-items: center;
+    /* flex-wrap: wrap; */
     padding-bottom: 10px;
+    border: solid white 3px;
+    border-radius: 15px;
+    padding: 0px 10px;
+    width: 250px;
 `;
 
 const InfoElement = styled.div`
     display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
     align-items: center;
-    padding: 0 20px;
+    margin: 5px 5px;
 `;
 
 const InfoValue = styled.span`
@@ -26,12 +33,12 @@ const UserStatusBar = ({ cash, userName }) => {
     return (
         <InfoBar>
             <InfoElement>
-                <Cash />
-                <InfoValue>{cash}$</InfoValue>
-            </InfoElement>
-            <InfoElement>
                 <Driver />
                 <InfoValue>{userName}</InfoValue>
+            </InfoElement>
+            <InfoElement>
+                <Cash />
+                <InfoValue>{cash} $</InfoValue>
             </InfoElement>
         </InfoBar>
     );

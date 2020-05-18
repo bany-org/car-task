@@ -92,18 +92,24 @@ const Body = styled.div`
     min-height: 100vh;
     background-color: #f6f1e9;
     text-align: center;
+    font-family: "Lato", sans-serif;
 `;
 
 function App({ updateCarsList, updateEnginesList, updateGearboxesList }) {
     const [isLoading, changeLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`https://swapi.dev/api/people/1`).then((res) => {
-            updateCarsList(carsList);
-            updateEnginesList(enginesList);
-            updateGearboxesList(gearboxesList);
-            changeLoading(false);
-        });
+        axios
+            .get(`https://swapi.dev/api/people/1`)
+            .then((res) => {
+                updateCarsList(carsList);
+                updateEnginesList(enginesList);
+                updateGearboxesList(gearboxesList);
+                changeLoading(false);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }, []);
     return (
         <HashRouter basename="/">

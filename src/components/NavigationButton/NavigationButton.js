@@ -2,42 +2,37 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-const Tab = styled.div`
-    display: flex;
-    align-items: center;
-`;
-
-const Button = styled.button`
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    text-decoration: none;
-    width: 150px;
-    padding: 5px 0;
-    /* height: 32px; */
-    /* background-color: lightgray; */
-    margin: 5px 10px;
-    border-radius: 15px;
-    &:hover {
-        background-color: gray;
-    }
-`;
-
 const ButtonLabel = styled.span`
+    margin-left: 5px;
     font-weight: 800;
     font-size: 20px;
+    font-family: "Lato", sans-serif;
+`;
+
+const StyledNavLink = styled(NavLink)`
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 15px;
+    /* width: 160px; */
+    /* border: solid gray 1px; */
 `;
 
 const NavigationButton = (props) => {
     return (
-        <NavLink exact to={`${props.path}`}>
-            <Tab>
-                <Button>
-                    {props.children}
-                    <ButtonLabel>{props.label}</ButtonLabel>
-                </Button>
-            </Tab>
-        </NavLink>
+        <StyledNavLink
+            exact
+            to={`${props.path}`}
+            activeStyle={{
+                "background-color": "white",
+                height: "100%",
+                "border-color": "white",
+            }}
+        >
+            {props.children}
+            <ButtonLabel>{props.label}</ButtonLabel>
+        </StyledNavLink>
     );
 };
 

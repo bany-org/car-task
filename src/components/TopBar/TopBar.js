@@ -10,13 +10,19 @@ import Market from "../../assets/Market/Market";
 import Engine from "../../assets/Engine/Engine";
 
 const Body = styled.div`
+    display: flex;
+    align-items: center;
     padding: 20px;
     background-color: darkgray;
+    /* border: solid 2px darkgray; */
+    /* border-radius: 15px; */
+    padding: 20px;
 `;
 
 const NavigationBar = styled.div`
-    margin-top: 10px;
+    /* margin-top: 10px; */
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -27,9 +33,6 @@ const TopBar = () => {
         <Body>
             <UserStatusBar />
             <NavigationBar>
-                <NavigationButton path="/wiki" label="Wiki">
-                    <Wiki />
-                </NavigationButton>
                 <NavigationButton path="/garage" label="Garage">
                     <Garage />
                 </NavigationButton>
@@ -38,6 +41,9 @@ const TopBar = () => {
                 </NavigationButton>
                 <NavigationButton path="/parts" label="Parts">
                     <Engine />
+                </NavigationButton>
+                <NavigationButton path="/wiki" label="Wiki">
+                    <Wiki />
                 </NavigationButton>
             </NavigationBar>
         </Body>
