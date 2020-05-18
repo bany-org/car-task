@@ -7,6 +7,8 @@ import Driver from "../../assets/Driver/Driver";
 const InfoBar = styled.div`
     display: flex;
     justify-content: center;
+    border-bottom: 1px dotted black;
+    padding-bottom: 10px;
 `;
 
 const InfoElement = styled.div`

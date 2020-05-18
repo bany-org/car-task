@@ -18,6 +18,25 @@ const CarTypesIcons = {
     WK: <CarWk />,
 };
 
+const CarImage = styled.div`
+    background-color: white;
+    border-radius: 10px;
+    width: 150px;
+`;
+
+const CarDetails = styled.div`
+    background-color: lightgray;
+    height: 90%;
+    border-radius: 10px;
+    width: 70%;
+    margin: 0 10px;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+`;
+
 const Board = styled.div`
     display: flex;
     justify-content: center;
@@ -25,23 +44,31 @@ const Board = styled.div`
 `;
 
 const CarOffer = styled.div`
-    min-width: 220px;
+    width: 80%;
+    min-height: 100%;
     margin: 20px;
-    background-color: lightgray;
-    border-radius: 20px;
+    padding: 5px;
+    background-color: gray;
+    border-radius: 15px;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     &:hover {
-        background-color: gray;
+        background-color: lightslategray;
     }
+`;
+
+const OfferButton = styled.div`
+    background-color: yellow;
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 100px;
 `;
 
 const Market = ({ carsList, buyCar, fullGarage }) => {
     return (
         <>
             <h1>Market</h1>
-            {!fullGarage && <h3>Buy a car</h3>}
             {fullGarage && (
                 <>
                     <h1>New car is in your garage</h1>
@@ -60,9 +87,12 @@ const Market = ({ carsList, buyCar, fullGarage }) => {
                                 key={elem.name}
                                 onClick={() => buyCar(elem)}
                             >
-                                <div>{elem.name}</div>
-                                {CarTypesIcons[elem.type]}
-                                <div>Price: {elem.price}$</div>
+                                <CarImage>{CarTypesIcons[elem.type]}</CarImage>
+                                <CarDetails>
+                                    <div>Model: {elem.name}</div>
+                                    <div>Price: {elem.price}$</div>
+                                </CarDetails>
+                                <OfferButton>BUY NOW</OfferButton>
                             </CarOffer>
                         );
                     })}

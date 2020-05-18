@@ -7,11 +7,14 @@ import { buyEngine, buyGearbox } from "../../actions";
 
 const Body = styled.div`
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 const PartsList = styled.table`
     background-color: lightskyblue;
-    width: 100%;
+    width: 80%;
 `;
 
 const Data = styled.td`
