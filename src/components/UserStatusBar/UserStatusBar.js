@@ -1,10 +1,37 @@
 import React from "react";
+import styled from "styled-components";
+
+import Cash from "../../assets/Cash/Cash";
+import Driver from "../../assets/Driver/Driver";
+
+const InfoBar = styled.div`
+    display: flex;
+    justify-content: center;
+`;
+
+const InfoElement = styled.div`
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+`;
+
+const InfoValue = styled.span`
+    font-weight: 800;
+    margin-left: 10px;
+`;
 
 const UserStatusBar = ({ cash, userName }) => {
     return (
-        <div>
-            Cash: {cash} Name: {userName}
-        </div>
+        <InfoBar>
+            <InfoElement>
+                <Cash />
+                <InfoValue>{cash}$</InfoValue>
+            </InfoElement>
+            <InfoElement>
+                <Driver />
+                <InfoValue>{userName}</InfoValue>
+            </InfoElement>
+        </InfoBar>
     );
 };
 

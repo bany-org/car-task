@@ -3,7 +3,7 @@ import { CirclePicker } from "react-color";
 import styled from "styled-components";
 
 const ColorPicker = styled.div`
-    background-color: lightslategrey;
+    /* background-color: lightslategrey; */
     padding: 15px;
 `;
 

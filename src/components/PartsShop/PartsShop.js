@@ -5,6 +5,10 @@ import styled from "styled-components";
 import { getEnginesList, getGearboxesList } from "../../selectors";
 import { buyEngine, buyGearbox } from "../../actions";
 
+const Body = styled.div`
+    padding: 15px;
+`;
+
 const PartsList = styled.table`
     background-color: lightskyblue;
     width: 100%;
@@ -16,7 +20,7 @@ const Data = styled.td`
 
 const PartsShop = ({ enginesList, buyEngine, gearboxesList, buyGearbox }) => {
     return (
-        <div>
+        <Body>
             <h1>Parts shop</h1>
             <h1>Engines</h1>
             {enginesList.length > 0 && (
@@ -24,7 +28,7 @@ const PartsShop = ({ enginesList, buyEngine, gearboxesList, buyGearbox }) => {
                     <thead>
                         <tr>
                             <th>Engine</th>
-                            <th>Capacity</th>
+                            <th>CC</th>
                             <th>BHP</th>
                             <th>Price</th>
                         </tr>
@@ -33,8 +37,8 @@ const PartsShop = ({ enginesList, buyEngine, gearboxesList, buyGearbox }) => {
                         {enginesList.map((elem) => (
                             <tr key={elem.name}>
                                 <Data>{elem.name}</Data>
-                                <Data>{elem.capacity}L</Data>
-                                <Data>BHP: {elem.BHP}</Data>
+                                <Data>{elem.capacity} L</Data>
+                                <Data>{elem.BHP}</Data>
                                 <Data>{elem.price}$</Data>
                                 <Data>
                                     <button onClick={() => buyEngine(elem)}>
@@ -66,7 +70,7 @@ const PartsShop = ({ enginesList, buyEngine, gearboxesList, buyGearbox }) => {
                             <tr key={elem.name}>
                                 <Data>{elem.type}</Data>
                                 <Data>{elem.usage.join(", ")}</Data>
-                                <Data>{elem.price}</Data>
+                                <Data>{elem.price}$</Data>
                                 <Data>
                                     <button onClick={() => buyGearbox(elem)}>
                                         BUY
@@ -78,9 +82,9 @@ const PartsShop = ({ enginesList, buyEngine, gearboxesList, buyGearbox }) => {
                 </PartsList>
             )}
             {gearboxesList.length === 0 && (
-                <h3>No engines at this moment available</h3>
+                <h3>No gearboxes at this moment available</h3>
             )}
-        </div>
+        </Body>
     );
 };
 
@@ -90,9 +94,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    // changeCarColor: (color) => {
-    //     dispatch(changeCarColor(color));
-    // },
     buyEngine: (model) => {
         dispatch(buyEngine(model));
     },
