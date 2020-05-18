@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.js": "/car-task/static/js/main.d48b936d.chunk.js",
+    "main.js.map": "/car-task/static/js/main.d48b936d.chunk.js.map",
+    "runtime-main.js": "/car-task/static/js/runtime-main.b0fc19a5.js",
+    "runtime-main.js.map": "/car-task/static/js/runtime-main.b0fc19a5.js.map",
+    "static/js/2.76acfe9a.chunk.js": "/car-task/static/js/2.76acfe9a.chunk.js",
+    "static/js/2.76acfe9a.chunk.js.map": "/car-task/static/js/2.76acfe9a.chunk.js.map",
+    "index.html": "/car-task/index.html",
+    "precache-manifest.71a5178139f84cb9fe3a79639d918b2d.js": "/car-task/precache-manifest.71a5178139f84cb9fe3a79639d918b2d.js",
+    "service-worker.js": "/car-task/service-worker.js",
+    "static/js/2.76acfe9a.chunk.js.LICENSE.txt": "/car-task/static/js/2.76acfe9a.chunk.js.LICENSE.txt",
+    "static/media/SpraySound.mp3": "/car-task/static/media/SpraySound.3cd3f3cc.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b0fc19a5.js",
+    "static/js/2.76acfe9a.chunk.js",
+    "static/js/main.d48b936d.chunk.js"
+  ]
+}
