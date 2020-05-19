@@ -5,11 +5,18 @@ const Body = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    margin: 20px;
 `;
 
 const Requirements = styled.div`
     width: 80%;
     text-align: left;
+    border: solid gray 2px;
+    border-radius: 20px;
+    width: 80%;
+    margin: 20px;
+    padding: 0 20px;
 `;
 
 const Main = ({ addCash }) => {
@@ -81,6 +88,12 @@ const Main = ({ addCash }) => {
                     >
                         phatplus
                     </a>{" "}
+                    <a
+                        href="https://www.flaticon.com/authors/eucalyp"
+                        title="Eucalyp"
+                    >
+                        Eucalyp
+                    </a>
                     from{" "}
                     <a href="https://www.flaticon.com/" title="Flaticon">
                         www.flaticon.com

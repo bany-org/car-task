@@ -5,6 +5,12 @@ import styled from "styled-components";
 import { getEnginesList, getGearboxesList } from "../../selectors";
 import { buyEngine, buyGearbox } from "../../actions";
 
+import EnginesOffer from "../EnginesOffer/EnginesOffer";
+import GearboxesOffer from "../GearboxesOffer/GearboxesOffer";
+
+import Engine from "../../assets/Engine/Engine";
+import Gearbox from "../../assets/Gearbox/Gearbox";
+
 const Body = styled.div`
     padding: 15px;
     display: flex;
@@ -13,12 +19,17 @@ const Body = styled.div`
 `;
 
 const PartsList = styled.table`
-    background-color: lightskyblue;
+    border: solid gray 2px;
+    border-radius: 20px;
     width: 80%;
-`;
 
-const Data = styled.td`
-    border: 1px solid blue;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    @media (min-width: 1024px) {
+        width: 60%;
+    }
 `;
 
 const PartsShop = ({ enginesList, buyEngine, gearboxesList, buyGearbox }) => {
@@ -27,29 +38,11 @@ const PartsShop = ({ enginesList, buyEngine, gearboxesList, buyGearbox }) => {
             <h1>Engines</h1>
             {enginesList.length > 0 && (
                 <PartsList>
-                    <thead>
-                        <tr>
-                            <th>Engine</th>
-                            <th>CC</th>
-                            <th>BHP</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {enginesList.map((elem) => (
-                            <tr key={elem.name}>
-                                <Data>{elem.name}</Data>
-                                <Data>{elem.capacity} L</Data>
-                                <Data>{elem.BHP}</Data>
-                                <Data>{elem.price}$</Data>
-                                <Data>
-                                    <button onClick={() => buyEngine(elem)}>
-                                        BUY
-                                    </button>
-                                </Data>
-                            </tr>
-                        ))}
-                    </tbody>
+                    {enginesList.map((elem) => (
+                        <EnginesOffer part={elem} buyAction={buyEngine}>
+                            <Engine />
+                        </EnginesOffer>
+                    ))}
                 </PartsList>
             )}
             {enginesList.length === 0 && (
@@ -57,30 +50,13 @@ const PartsShop = ({ enginesList, buyEngine, gearboxesList, buyGearbox }) => {
             )}
 
             <h1>Gearboxes</h1>
-            {console.log(gearboxesList)}
             {gearboxesList.length > 0 && (
                 <PartsList>
-                    <thead>
-                        <tr>
-                            <th>Gearbox</th>
-                            <th>Useable for engines</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {gearboxesList.map((elem) => (
-                            <tr key={elem.name}>
-                                <Data>{elem.type}</Data>
-                                <Data>{elem.usage.join(", ")}</Data>
-                                <Data>{elem.price}$</Data>
-                                <Data>
-                                    <button onClick={() => buyGearbox(elem)}>
-                                        BUY
-                                    </button>
-                                </Data>
-                            </tr>
-                        ))}
-                    </tbody>
+                    {gearboxesList.map((elem) => (
+                        <GearboxesOffer part={elem} buyAction={buyGearbox}>
+                            <Gearbox />
+                        </GearboxesOffer>
+                    ))}
                 </PartsList>
             )}
             {gearboxesList.length === 0 && (
