@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "/car-task/static/js/main.0a08569f.chunk.js",
-    "main.js.map": "/car-task/static/js/main.0a08569f.chunk.js.map",
+    "main.js": "/car-task/static/js/main.077e0396.chunk.js",
+    "main.js.map": "/car-task/static/js/main.077e0396.chunk.js.map",
     "runtime-main.js": "/car-task/static/js/runtime-main.b0fc19a5.js",
     "runtime-main.js.map": "/car-task/static/js/runtime-main.b0fc19a5.js.map",
-    "static/js/2.76acfe9a.chunk.js": "/car-task/static/js/2.76acfe9a.chunk.js",
-    "static/js/2.76acfe9a.chunk.js.map": "/car-task/static/js/2.76acfe9a.chunk.js.map",
+    "static/js/2.25c465a5.chunk.js": "/car-task/static/js/2.25c465a5.chunk.js",
+    "static/js/2.25c465a5.chunk.js.map": "/car-task/static/js/2.25c465a5.chunk.js.map",
     "index.html": "/car-task/index.html",
-    "precache-manifest.9420b5bf059ee56163e0ecea45a025b9.js": "/car-task/precache-manifest.9420b5bf059ee56163e0ecea45a025b9.js",
+    "precache-manifest.49d334299193c27184c0de3ed4af0563.js": "/car-task/precache-manifest.49d334299193c27184c0de3ed4af0563.js",
     "service-worker.js": "/car-task/service-worker.js",
-    "static/js/2.76acfe9a.chunk.js.LICENSE.txt": "/car-task/static/js/2.76acfe9a.chunk.js.LICENSE.txt",
+    "static/js/2.25c465a5.chunk.js.LICENSE.txt": "/car-task/static/js/2.25c465a5.chunk.js.LICENSE.txt",
     "static/media/SpraySound.mp3": "/car-task/static/media/SpraySound.3cd3f3cc.mp3"
   },
   "entrypoints": [
     "static/js/runtime-main.b0fc19a5.js",
-    "static/js/2.76acfe9a.chunk.js",
-    "static/js/main.0a08569f.chunk.js"
+    "static/js/2.25c465a5.chunk.js",
+    "static/js/main.077e0396.chunk.js"
   ]
 }

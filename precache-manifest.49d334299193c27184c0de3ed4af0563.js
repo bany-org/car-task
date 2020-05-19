@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cabb2098923996d26716daa262a8d40e",
+    "revision": "bbd12712d22341fe6dffb0efbc42aa13",
     "url": "/car-task/index.html"
   },
   {
-    "revision": "200d217d0c63a8b0e7e1",
-    "url": "/car-task/static/js/2.76acfe9a.chunk.js"
+    "revision": "cd84d9b1b5dc1d074156",
+    "url": "/car-task/static/js/2.25c465a5.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/car-task/static/js/2.76acfe9a.chunk.js.LICENSE.txt"
+    "url": "/car-task/static/js/2.25c465a5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "416147e67d571266930c",
-    "url": "/car-task/static/js/main.0a08569f.chunk.js"
+    "revision": "490a2141cbceee0db9d2",
+    "url": "/car-task/static/js/main.077e0396.chunk.js"
   },
   {
     "revision": "25caaac0c4a7ff979870",
