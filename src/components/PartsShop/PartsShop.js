@@ -18,7 +18,7 @@ const Body = styled.div`
     align-items: center;
 `;
 
-const PartsList = styled.table`
+const PartsList = styled.div`
     border: solid gray 2px;
     border-radius: 20px;
     width: 80%;
@@ -39,7 +39,11 @@ const PartsShop = ({ enginesList, buyEngine, gearboxesList, buyGearbox }) => {
             {enginesList.length > 0 && (
                 <PartsList>
                     {enginesList.map((elem) => (
-                        <EnginesOffer part={elem} buyAction={buyEngine}>
+                        <EnginesOffer
+                            part={elem}
+                            action={buyEngine}
+                            buttonLabel="BUY NOW"
+                        >
                             <Engine />
                         </EnginesOffer>
                     ))}
@@ -53,7 +57,11 @@ const PartsShop = ({ enginesList, buyEngine, gearboxesList, buyGearbox }) => {
             {gearboxesList.length > 0 && (
                 <PartsList>
                     {gearboxesList.map((elem) => (
-                        <GearboxesOffer part={elem} buyAction={buyGearbox}>
+                        <GearboxesOffer
+                            part={elem}
+                            action={buyGearbox}
+                            buttonLabel="BUY NOW"
+                        >
                             <Gearbox />
                         </GearboxesOffer>
                     ))}

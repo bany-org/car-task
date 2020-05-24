@@ -18,51 +18,37 @@ import {
 
 import CarColorChange from "../CarColorChange/CarColorChange";
 import CarDetails from "../CarDetails/CarDetails";
+import EnginesOffer from "../EnginesOffer/EnginesOffer";
+import Car from "../Car/Car";
 
-import CarPro from "../../assets/CarPro/CarPro";
-import CarUber from "../../assets/CarUber/CarUber";
-import CarWk from "../../assets/CarWk/CarWk";
-import CarStandard from "../../assets/CarStandard/CarStandard";
+import Engine from "../../assets/Engine/Engine";
+import Gearbox from "../../assets/Gearbox/Gearbox";
 
-import CarParts from "../CarParts/CarParts";
-
-const CarOffer = styled.div`
-    min-width: 220px;
-    margin: 20px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-`;
-
-const GarageLayout = styled.div`
-    display: flex;
-    flex-flow: wrap;
-    justify-content: space-between;
-`;
-
-const renderCarIcon = (type, color) => {
-    switch (type) {
-        case "PRO":
-            return <CarPro color={color} />;
-
-        case "UBER":
-            return <CarUber color={color} />;
-
-        case "STANDARD":
-            return <CarStandard color={color} />;
-
-        case "WK":
-            return <CarWk color={color} />;
-
-        default:
-            return;
-    }
-};
+import GearboxesOffer from "../GearboxesOffer/GearboxesOffer";
 
 const Body = styled.div`
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+`;
+
+const GarageContentRow = styled.div`
+    display: flex;
+    flex-flow: wrap;
+    margin: 10px;
+    justify-content: space-around;
+`;
+
+const PartsList = styled.div`
+    border: solid gray 2px;
+    border-radius: 20px;
+    min-width: 40%;
+    max-width: 80%;
+    margin: 10px;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 `;
 
 const Garage = ({
@@ -79,33 +65,55 @@ const Garage = ({
 }) => {
     return (
         <Body>
-            <CarDetails
-                car={car}
-                engine={mountedEngine}
-                gearbox={mountedGearbox}
-            />
-            <GarageLayout>
+            <GarageContentRow>
+                <CarDetails
+                    car={car}
+                    engine={mountedEngine}
+                    gearbox={mountedGearbox}
+                />
+            </GarageContentRow>
+            <GarageContentRow>
                 <CarColorChange
                     car={car}
                     cash={cash}
                     changeColor={changeCarColor}
                 />
-                {car && (
-                    <CarOffer>
-                        {renderCarIcon(car.type, car.color)}
-                        <button onClick={sellCar}>SELL</button>
-                    </CarOffer>
-                )}
+                <Car car={car} sellCar={sellCar} />
+            </GarageContentRow>
+            <GarageContentRow>
+                <PartsList>
+                    <h3>Engines</h3>
+                    {engines.map((elem) => (
+                        <EnginesOffer
+                            part={elem}
+                            action={mountEngine}
+                            buttonLabel="MOUNT"
+                        >
+                            <Engine />
+                        </EnginesOffer>
+                    ))}
+                </PartsList>
 
-                <CarParts
-                    car={car}
-                    engines={engines}
-                    gearboxes={gearboxes}
-                    mountEngine={mountEngine}
-                    mountGearbox={mountGearbox}
-                    mountedEngine={mountedEngine}
-                />
-            </GarageLayout>
+                <PartsList>
+                    {gearboxes.length > 0 && (
+                        <>
+                            <h3>Gearboxes</h3>
+                            {gearboxes.map((elem) => (
+                                <GearboxesOffer
+                                    part={elem}
+                                    action={mountGearbox}
+                                    buttonLabel="MOUNT"
+                                >
+                                    <Gearbox />
+                                </GearboxesOffer>
+                            ))}
+                        </>
+                    )}
+                    {gearboxes.length <= 0 && (
+                        <h3>You need to buy a gearbox</h3>
+                    )}
+                </PartsList>
+            </GarageContentRow>
         </Body>
     );
 };

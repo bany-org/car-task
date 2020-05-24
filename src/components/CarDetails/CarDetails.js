@@ -1,14 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
+const CarParameters = styled.div`
+    border: solid gray 2px;
+    border-radius: 20px;
+    width: 100%;
+
+    padding: 20px;
+`;
+
 const CarInfo = styled.table`
     width: 100%;
     background-color: lightskyblue;
+    border-radius: 10px;
 `;
 
 const CarDetails = ({ car, engine, gearbox }) => {
     return (
-        <>
+        <CarParameters>
             <h2>Car parameters</h2>
             <CarInfo>
                 <thead>
@@ -32,7 +41,7 @@ const CarDetails = ({ car, engine, gearbox }) => {
                     </tr>
                 </tbody>
             </CarInfo>
-        </>
+        </CarParameters>
     );
 };
 

@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const Offer = styled.div`
     width: 100%;
-    min-height: 100%;
     margin: 20px;
     padding: 5px;
     background-color: gray;
@@ -64,7 +63,7 @@ const OfferButton = styled.div`
     }
 `;
 
-const GearboxesOffer = ({ part, buyAction, children }) => {
+const GearboxesOffer = ({ part, action, buttonLabel, children }) => {
     return (
         <Offer key={part.type}>
             <CarImage>{children}</CarImage>
@@ -84,7 +83,9 @@ const GearboxesOffer = ({ part, buyAction, children }) => {
                     <OfferElementValue>{part.price}$</OfferElementValue>
                 </div>
             </CarDetails>
-            <OfferButton onClick={() => buyAction(part)}>BUY NOW</OfferButton>
+            <OfferButton onClick={() => action(part)}>
+                {buttonLabel}
+            </OfferButton>
         </Offer>
     );
 };

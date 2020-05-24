@@ -99,17 +99,21 @@ function App({ updateCarsList, updateEnginesList, updateGearboxesList }) {
     const [isLoading, changeLoading] = useState(true);
 
     useEffect(() => {
-        axios
-            .get(`https://swapi.dev/api/people/1`)
-            .then((res) => {
-                updateCarsList(carsList);
-                updateEnginesList(enginesList);
-                updateGearboxesList(gearboxesList);
-                changeLoading(false);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        // axios
+        //     .get(`https://swapi.dev/api/people/1`)
+        //     .then((res) => {
+        //         updateCarsList(carsList);
+        //         updateEnginesList(enginesList);
+        //         updateGearboxesList(gearboxesList);
+        //         changeLoading(false);
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //     });
+        updateCarsList(carsList);
+        updateEnginesList(enginesList);
+        updateGearboxesList(gearboxesList);
+        changeLoading(false);
     }, []);
     return (
         <HashRouter basename="/">
