@@ -58,12 +58,19 @@ const OfferButton = styled.div`
     min-width: 100px;
     font-weight: 900;
     cursor: pointer;
+    margin: 5px;
     &:hover {
         background-color: yellowgreen;
     }
 `;
 
-const GearboxesOffer = ({ part, action, buttonLabel, children }) => {
+const GearboxesOffer = ({
+    part,
+    action,
+    buttonLabel,
+    children,
+    sellGearbox,
+}) => {
     return (
         <Offer key={part.type}>
             <CarImage>{children}</CarImage>
@@ -86,6 +93,11 @@ const GearboxesOffer = ({ part, action, buttonLabel, children }) => {
             <OfferButton onClick={() => action(part)}>
                 {buttonLabel}
             </OfferButton>
+            {sellGearbox && (
+                <OfferButton onClick={() => sellGearbox(part)}>
+                    SELL
+                </OfferButton>
+            )}
         </Offer>
     );
 };

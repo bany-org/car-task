@@ -43,6 +43,10 @@ const Main = ({ addCash }) => {
                 </ul>
             </Requirements>
             <Requirements>
+                każda część sprzedawana za 50 mniej niż była kupiona auto
+                sprzedawane za 100 mniej niż było kupione
+            </Requirements>
+            <Requirements>
                 <h3>Sources</h3>
                 <div>
                     Icons made by{" "}

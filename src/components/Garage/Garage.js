@@ -7,6 +7,8 @@ import {
     sellCar,
     mountEngine,
     mountGearbox,
+    sellEngine,
+    sellGearbox,
 } from "../../actions";
 import {
     getMyCar,
@@ -62,6 +64,8 @@ const Garage = ({
     gearboxes,
     mountGearbox,
     mountedGearbox,
+    sellEngine,
+    sellGearbox,
 }) => {
     return (
         <Body>
@@ -88,6 +92,7 @@ const Garage = ({
                             part={elem}
                             action={mountEngine}
                             buttonLabel="MOUNT"
+                            sellEngine={sellEngine}
                         >
                             <Engine />
                         </EnginesOffer>
@@ -103,6 +108,7 @@ const Garage = ({
                                     part={elem}
                                     action={mountGearbox}
                                     buttonLabel="MOUNT"
+                                    sellGearbox={sellGearbox}
                                 >
                                     <Gearbox />
                                 </GearboxesOffer>
@@ -138,6 +144,12 @@ const mapDispatchToProps = (dispatch) => ({
     },
     mountGearbox: (model) => {
         dispatch(mountGearbox(model));
+    },
+    sellEngine: (model) => {
+        dispatch(sellEngine(model));
+    },
+    sellGearbox: (model) => {
+        dispatch(sellGearbox(model));
     },
 });
 

@@ -61,3 +61,13 @@ export const updateGearboxesList = (gearboxesList) => ({
     type: types.UPDATE_GEARBOXES_LIST,
     gearboxesList,
 });
+
+export const sellEngine = (model) => ({
+    type: types.SELL_ENGINE,
+    model,
+});
+
+export const sellGearbox = (model) => ({
+    type: types.SELL_GEARBOX,
+    model,
+});

@@ -55,6 +55,7 @@ const OfferButton = styled.div`
     border-radius: 20px;
     height: 30%;
     padding: 10px;
+    margin: 5px;
     min-width: 100px;
     font-weight: 900;
     cursor: pointer;
@@ -63,7 +64,7 @@ const OfferButton = styled.div`
     }
 `;
 
-const EnginesOffer = ({ part, action, children, buttonLabel }) => {
+const EnginesOffer = ({ part, action, children, buttonLabel, sellEngine }) => {
     return (
         <Offer key={part.name}>
             <CarImage>{children}</CarImage>
@@ -88,6 +89,9 @@ const EnginesOffer = ({ part, action, children, buttonLabel }) => {
             <OfferButton onClick={() => action(part)}>
                 {buttonLabel}
             </OfferButton>
+            {sellEngine && (
+                <OfferButton onClick={() => sellEngine(part)}>SELL</OfferButton>
+            )}
         </Offer>
     );
 };

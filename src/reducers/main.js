@@ -10,6 +10,8 @@ import {
     MOUNT_ENGINE,
     BUY_GEARBOX,
     MOUNT_GEARBOX,
+    SELL_ENGINE,
+    SELL_GEARBOX,
 } from "../constants/ActionTypes";
 
 import {
@@ -115,17 +117,17 @@ export default function main(state = initialState, action) {
             };
 
         case SELL_CAR:
-            console.log("sell car", state.marketCarsList);
-
             updatedMarketCarsList.push(state.carData.carModel);
-            const sellValue = state.carData.carModel.price - 100;
+            let sellValue = state.carData.carModel.price - 100;
 
             if (state.mountedEngine) {
                 updatedShopEnginesList.push(state.mountedEngine);
+                sellValue += state.mountedEngine.price - 50;
             }
 
             if (state.mountedGearbox) {
                 updatedShopGearboxesList.push(state.mountedGearbox);
+                sellValue += state.mountedGearbox.price - 50;
             }
 
             return {
@@ -141,6 +143,42 @@ export default function main(state = initialState, action) {
                 shopGearboxesList: updatedShopGearboxesList,
                 mountedEngine: null,
                 mountedGearbox: null,
+            };
+
+        case SELL_ENGINE:
+            const engineSellValue = action.model.price - 50;
+            updatedUserEnginesList = updatedUserEnginesList.filter((obj) => {
+                return obj.name !== action.model.name;
+            });
+
+            updatedShopEnginesList.push(action.model);
+
+            return {
+                ...state,
+                resources: {
+                    cash: state.resources.cash + engineSellValue,
+                },
+                userEnginesList: updatedUserEnginesList,
+                shopEnginesList: updatedShopEnginesList,
+            };
+
+        case SELL_GEARBOX:
+            const gearboxSellValue = action.model.price - 50;
+            updatedUserGearboxesList = updatedUserGearboxesList.filter(
+                (obj) => {
+                    return obj.type !== action.model.type;
+                }
+            );
+
+            updatedShopGearboxesList.push(action.model);
+
+            return {
+                ...state,
+                resources: {
+                    cash: state.resources.cash + gearboxSellValue,
+                },
+                userGearboxesList: updatedUserGearboxesList,
+                shopGearboxesList: updatedShopGearboxesList,
             };
 
         case UPDATE_CARS_LIST:
