@@ -82,7 +82,7 @@ const EnginesOffer = ({ part, action, children, buttonLabel, sellEngine }) => {
                     <OfferElementValue>{part.BHP} HP</OfferElementValue>
                 </div>
                 <div>
-                    <Title>Price:</Title>
+                    <Title>Buy price:</Title>
                     <OfferElementValue>{part.price}$</OfferElementValue>
                 </div>
             </CarDetails>
@@ -90,7 +90,9 @@ const EnginesOffer = ({ part, action, children, buttonLabel, sellEngine }) => {
                 {buttonLabel}
             </OfferButton>
             {sellEngine && (
-                <OfferButton onClick={() => sellEngine(part)}>SELL</OfferButton>
+                <OfferButton onClick={() => sellEngine(part)}>
+                    SELL ({part.price - 50}$)
+                </OfferButton>
             )}
         </Offer>
     );

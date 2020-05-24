@@ -27,6 +27,7 @@ import Engine from "../../assets/Engine/Engine";
 import Gearbox from "../../assets/Gearbox/Gearbox";
 
 import GearboxesOffer from "../GearboxesOffer/GearboxesOffer";
+import CarOffer from "../CarOffer/CarOffer";
 
 const Body = styled.div`
     padding: 20px;
@@ -47,6 +48,8 @@ const PartsList = styled.div`
     min-width: 40%;
     max-width: 80%;
     margin: 10px;
+    min-height: 100px;
+    height: 100%;
 
     display: flex;
     justify-content: center;
@@ -70,33 +73,53 @@ const Garage = ({
     return (
         <Body>
             <GarageContentRow>
-                <CarDetails
-                    car={car}
-                    engine={mountedEngine}
-                    gearbox={mountedGearbox}
-                />
-            </GarageContentRow>
-            <GarageContentRow>
-                <CarColorChange
-                    car={car}
-                    cash={cash}
-                    changeColor={changeCarColor}
-                />
-                <Car car={car} sellCar={sellCar} />
+                {!car && <h3>You need to buy a car</h3>}
+                {car && (
+                    <CarDetails
+                        car={car}
+                        engine={mountedEngine}
+                        gearbox={mountedGearbox}
+                    />
+                )}
             </GarageContentRow>
             <GarageContentRow>
                 <PartsList>
-                    <h3>Engines</h3>
-                    {engines.map((elem) => (
-                        <EnginesOffer
-                            part={elem}
-                            action={mountEngine}
-                            buttonLabel="MOUNT"
-                            sellEngine={sellEngine}
-                        >
-                            <Engine />
-                        </EnginesOffer>
-                    ))}
+                    <CarColorChange
+                        car={car}
+                        cash={cash}
+                        changeColor={changeCarColor}
+                    />
+                </PartsList>
+                <PartsList>
+                    {!car && <h3>You need to buy a car</h3>}
+                    {car && (
+                        <CarOffer
+                            car={car}
+                            action={sellCar}
+                            actionLabel="SELL CAR"
+                        />
+                    )}
+                </PartsList>
+            </GarageContentRow>
+            <GarageContentRow>
+                <PartsList>
+                    {engines.length > 0 && (
+                        <>
+                            <h3>Engines</h3>
+                            {engines.map((elem) => (
+                                <EnginesOffer
+                                    part={elem}
+                                    action={mountEngine}
+                                    buttonLabel="MOUNT"
+                                    sellEngine={sellEngine}
+                                    key={elem.name}
+                                >
+                                    <Engine />
+                                </EnginesOffer>
+                            ))}
+                        </>
+                    )}
+                    {engines.length <= 0 && <h3>You need to buy engine</h3>}
                 </PartsList>
 
                 <PartsList>
@@ -109,15 +132,14 @@ const Garage = ({
                                     action={mountGearbox}
                                     buttonLabel="MOUNT"
                                     sellGearbox={sellGearbox}
+                                    key={elem.type}
                                 >
                                     <Gearbox />
                                 </GearboxesOffer>
                             ))}
                         </>
                     )}
-                    {gearboxes.length <= 0 && (
-                        <h3>You need to buy a gearbox</h3>
-                    )}
+                    {gearboxes.length <= 0 && <h3>You need to buy gearbox</h3>}
                 </PartsList>
             </GarageContentRow>
         </Body>

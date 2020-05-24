@@ -9,8 +9,8 @@ const ColorPicker = styled.div`
     /* background-color: lightslategrey; */
     padding: 10px;
 
-    border: solid gray 2px;
-    border-radius: 20px;
+    /* border: solid gray 2px;
+    border-radius: 20px; */
     min-width: 40%;
     max-width: 80%;
 `;

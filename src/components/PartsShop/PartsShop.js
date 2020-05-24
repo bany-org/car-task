@@ -43,6 +43,7 @@ const PartsShop = ({ enginesList, buyEngine, gearboxesList, buyGearbox }) => {
                             part={elem}
                             action={buyEngine}
                             buttonLabel="BUY NOW"
+                            key={elem.name}
                         >
                             <Engine />
                         </EnginesOffer>
@@ -61,6 +62,7 @@ const PartsShop = ({ enginesList, buyEngine, gearboxesList, buyGearbox }) => {
                             part={elem}
                             action={buyGearbox}
                             buttonLabel="BUY NOW"
+                            key={elem.type}
                         >
                             <Gearbox />
                         </GearboxesOffer>

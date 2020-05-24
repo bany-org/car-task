@@ -25,9 +25,9 @@ const NavigationButton = (props) => {
             exact
             to={`${props.path}`}
             activeStyle={{
-                "background-color": "white",
+                backgroundColor: "white",
                 height: "100%",
-                "border-color": "white",
+                borderColor: "white",
             }}
         >
             {props.children}

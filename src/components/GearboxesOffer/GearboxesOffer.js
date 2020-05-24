@@ -86,7 +86,7 @@ const GearboxesOffer = ({
                     </OfferElementValue>
                 </div>
                 <div>
-                    <Title>Price:</Title>
+                    <Title>Buy price:</Title>
                     <OfferElementValue>{part.price}$</OfferElementValue>
                 </div>
             </CarDetails>
@@ -95,7 +95,7 @@ const GearboxesOffer = ({
             </OfferButton>
             {sellGearbox && (
                 <OfferButton onClick={() => sellGearbox(part)}>
-                    SELL
+                    SELL ({part.price - 50}$)
                 </OfferButton>
             )}
         </Offer>

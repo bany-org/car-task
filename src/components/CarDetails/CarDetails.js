@@ -20,7 +20,6 @@ const CarDetails = ({ car, engine, gearbox }) => {
     const engineValue = engine?.price - 50 || 0;
     const gearboxValue = gearbox?.price - 50 || 0;
 
-    console.log("cardet", car, carValue);
     return (
         <CarParameters>
             <h2>Car parameters</h2>

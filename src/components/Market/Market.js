@@ -48,7 +48,8 @@ const Market = ({ carsList, buyCar, fullGarage }) => {
                             <CarOffer
                                 key={elem.name}
                                 car={elem}
-                                buyAction={buyCar}
+                                action={buyCar}
+                                actionLabel="BUY NOW"
                             ></CarOffer>
                         );
                     })}

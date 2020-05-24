@@ -13,6 +13,25 @@ const CarTypesIcons = {
     WK: <CarWk />,
 };
 
+const renderCarIcon = (type, color) => {
+    switch (type) {
+        case "PRO":
+            return <CarPro color={color} />;
+
+        case "UBER":
+            return <CarUber color={color} />;
+
+        case "STANDARD":
+            return <CarStandard color={color} />;
+
+        case "WK":
+            return <CarWk color={color} />;
+
+        default:
+            return;
+    }
+};
+
 const CarImage = styled.div`
     background-color: white;
     border-radius: 10px;
@@ -76,21 +95,21 @@ const OfferElementValue = styled.div`
     font-weight: 900;
 `;
 
-const CarOffer = ({ car, buyAction }) => {
+const CarOffer = ({ car, action, actionLabel }) => {
     return (
-        <Offer key={car.name}>
-            <CarImage>{CarTypesIcons[car.type]}</CarImage>
+        <Offer>
+            <CarImage>{renderCarIcon(car.type, car.color)}</CarImage>
             <CarDetails>
                 <div>
                     <Title>Model:</Title>
                     <OfferElementValue>{car.name}</OfferElementValue>
                 </div>
                 <div>
-                    <Title>Price:</Title>
+                    <Title>Buy price:</Title>
                     <OfferElementValue>{car.price}$</OfferElementValue>
                 </div>
             </CarDetails>
-            <OfferButton onClick={() => buyAction(car)}>BUY NOW</OfferButton>
+            <OfferButton onClick={() => action(car)}>{actionLabel}</OfferButton>
         </Offer>
     );
 };
