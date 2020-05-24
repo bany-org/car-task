@@ -124,6 +124,10 @@ export default function main(state = initialState, action) {
                 updatedShopEnginesList.push(state.mountedEngine);
             }
 
+            if (state.mountedGearbox) {
+                updatedShopGearboxesList.push(state.mountedGearbox);
+            }
+
             return {
                 ...state,
                 carData: {
@@ -134,7 +138,9 @@ export default function main(state = initialState, action) {
                 },
                 marketCarsList: updatedMarketCarsList,
                 shopEnginesList: updatedShopEnginesList,
+                shopGearboxesList: updatedShopGearboxesList,
                 mountedEngine: null,
+                mountedGearbox: null,
             };
 
         case UPDATE_CARS_LIST:
