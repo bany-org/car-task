@@ -16,6 +16,11 @@ const CarInfo = styled.table`
 `;
 
 const CarDetails = ({ car, engine, gearbox }) => {
+    const carValue = car?.price - 100 || 0;
+    const engineValue = engine?.price - 50 || 0;
+    const gearboxValue = gearbox?.price - 50 || 0;
+
+    console.log("cardet", car, carValue);
     return (
         <CarParameters>
             <h2>Car parameters</h2>
@@ -37,7 +42,11 @@ const CarDetails = ({ car, engine, gearbox }) => {
                         <td>{engine ? `${engine.capacity} L` : "---"}</td>
                         <td>{engine ? `${engine.BHP} ` : "---"}</td>
                         <td>{gearbox ? gearbox.type : "---"}</td>
-                        <td>{car ? `${car.price - 100}$` : "---"}</td>
+                        <td>
+                            {car
+                                ? `${carValue + engineValue + gearboxValue}$`
+                                : "---"}
+                        </td>
                     </tr>
                 </tbody>
             </CarInfo>

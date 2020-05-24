@@ -43,8 +43,19 @@ const Main = ({ addCash }) => {
                 </ul>
             </Requirements>
             <Requirements>
-                każda część sprzedawana za 50 mniej niż była kupiona auto
-                sprzedawane za 100 mniej niż było kupione
+                <h3>General rules</h3>
+                <ul>
+                    <li>
+                        You can sell your car for 100$ less than its basic value
+                    </li>
+                    <li>
+                        You can sell engine for 50$ less than its basic value
+                    </li>
+                    <li>
+                        You can sell gearbox for 50$ less than its basic value
+                    </li>
+                    <li>You can paint your car for 100$</li>
+                </ul>
             </Requirements>
             <Requirements>
                 <h3>Sources</h3>
