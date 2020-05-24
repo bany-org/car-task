@@ -12,6 +12,11 @@ import {
     MOUNT_GEARBOX,
 } from "../constants/ActionTypes";
 
+import {
+    CAR_TYPE_AVAILABLE_CONFIGURATION,
+    ENGINE_POSSIBLE_GEARBOX,
+} from "../config/Config";
+
 import SpraySound from "../assets/SpraySound/SpraySound.mp3";
 
 const initialState = {
@@ -172,6 +177,29 @@ export default function main(state = initialState, action) {
             };
 
         case MOUNT_ENGINE:
+            if (!state.carData.carModel) {
+                return state;
+            }
+
+            const carType = state.carData.carModel.type;
+
+            if (
+                !CAR_TYPE_AVAILABLE_CONFIGURATION[carType].engine(
+                    action.model.capacity
+                )
+            ) {
+                return state;
+            }
+
+            if (state.mountedGearbox) {
+                const mountedGearbox = state.mountedGearbox.type;
+                const engineType = action.model.type;
+
+                if (!ENGINE_POSSIBLE_GEARBOX[engineType](mountedGearbox)) {
+                    return state;
+                }
+            }
+
             if (state.mountedEngine) {
                 updatedUserEnginesList.push(state.mountedEngine);
             }
@@ -208,6 +236,16 @@ export default function main(state = initialState, action) {
             };
 
         case MOUNT_GEARBOX:
+            if (!state.carData.carModel || !state.mountedEngine) {
+                return state;
+            }
+
+            const engineType = state.mountedEngine.type;
+
+            if (!ENGINE_POSSIBLE_GEARBOX[engineType](action.model.type)) {
+                return state;
+            }
+
             if (state.mountedGearbox) {
                 updatedUserGearboxesList.push(state.mountedGearbox);
             }

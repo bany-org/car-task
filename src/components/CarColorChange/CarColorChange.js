@@ -18,11 +18,16 @@ const ColorPicker = styled.div`
 const CarColorChange = ({ car, cash, changeColor }) => {
     return (
         <ColorPicker>
-            <CirclePicker
-                color={car?.color || "#000000"}
-                onChangeComplete={car ? changeColor : () => {}}
-            />
-            <div>Zmiana koloru - 100$</div>
+            {car && (
+                <>
+                    <CirclePicker
+                        color={car?.color || "#000000"}
+                        onChangeComplete={car ? changeColor : () => {}}
+                    />
+                    <div>Zmiana koloru - 100$</div>
+                </>
+            )}
+            {!car && <h3>You need to buy a car</h3>}
         </ColorPicker>
     );
 };

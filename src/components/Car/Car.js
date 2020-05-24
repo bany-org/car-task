@@ -49,6 +49,7 @@ const Car = ({ car, sellCar }) => {
                     <button onClick={sellCar}>SELL</button>
                 </>
             )}
+            {!car && <h3>You need to buy a car</h3>}
         </CarView>
     );
 };

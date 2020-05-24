@@ -5,12 +5,12 @@ const CAR_TYPES = {
     WK: "WK",
 };
 
-// const ENGINE_TYPES = {
-//     TWIN_TURBO: 'TWIN_TURBO',
-//     TURBO: 'TURBO',
-//     SPORT: 'SPORT',
-//     CITY: 'CITY',
-// };
+const ENGINE_TYPES = {
+    TWIN_TURBO: "TWIN_TURBO",
+    TURBO: "TURBO",
+    SPORT: "SPORT",
+    CITY: "CITY",
+};
 
 const CAR_TYPE_MAX_ENGINE_CAPACITY = {
     PRO: 5.2,
@@ -22,6 +22,13 @@ const CAR_TYPE_MAX_ENGINE_CAPACITY = {
 const GEARBOX_TYPES = {
     MANUAL: "MANUAL",
     AUTOMATIC: "AUTOMATIC",
+};
+
+export const ENGINE_POSSIBLE_GEARBOX = {
+    TWIN_TURBO: (type) => (type === GEARBOX_TYPES.AUTOMATIC ? true : false),
+    TURBO: (type) => (type === GEARBOX_TYPES.AUTOMATIC ? true : false),
+    SPORT: () => true,
+    CITY: () => true,
 };
 
 export const CAR_TYPE_AVAILABLE_CONFIGURATION = {
