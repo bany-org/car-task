@@ -20,6 +20,8 @@ import {
 } from "../config/Config";
 
 import SpraySound from "../assets/SpraySound/SpraySound.mp3";
+import PartsSound from "../assets/MountSound/MountSound.mp3";
+import CashSound from "../assets/CashSound/CashSound.mp3";
 
 const initialState = {
     userData: {
@@ -45,6 +47,16 @@ const initialState = {
 
 function playSpraySound() {
     const audio = new Audio(SpraySound);
+    audio.play();
+}
+
+function playPartsSound() {
+    const audio = new Audio(PartsSound);
+    audio.play();
+}
+
+function playCashSound() {
+    const audio = new Audio(CashSound);
     audio.play();
 }
 
@@ -103,6 +115,8 @@ export default function main(state = initialState, action) {
                 return obj.name !== action.car.name;
             });
 
+            playCashSound();
+
             return {
                 ...state,
                 resources: {
@@ -130,6 +144,8 @@ export default function main(state = initialState, action) {
                 sellValue += state.mountedGearbox.price - 50;
             }
 
+            playCashSound();
+
             return {
                 ...state,
                 carData: {
@@ -153,6 +169,8 @@ export default function main(state = initialState, action) {
 
             updatedShopEnginesList.push(action.model);
 
+            playCashSound();
+
             return {
                 ...state,
                 resources: {
@@ -171,6 +189,8 @@ export default function main(state = initialState, action) {
             );
 
             updatedShopGearboxesList.push(action.model);
+
+            playCashSound();
 
             return {
                 ...state,
@@ -209,6 +229,8 @@ export default function main(state = initialState, action) {
             });
 
             updatedUserEnginesList.push(action.model);
+
+            playCashSound();
 
             return {
                 ...state,
@@ -252,6 +274,8 @@ export default function main(state = initialState, action) {
                 return obj.name !== action.model.name;
             });
 
+            playPartsSound();
+
             return {
                 ...state,
                 mountedEngine: action.model,
@@ -268,6 +292,8 @@ export default function main(state = initialState, action) {
             });
 
             updatedUserGearboxesList.push(action.model);
+
+            playCashSound();
 
             return {
                 ...state,
@@ -299,6 +325,8 @@ export default function main(state = initialState, action) {
                     return obj.type !== action.model.type;
                 }
             );
+
+            playPartsSound();
 
             return {
                 ...state,
