@@ -1,5 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
+
+import { getUserCash, getUserName } from "../../selectors";
 
 import Cash from "../../assets/Cash/Cash";
 import Driver from "../../assets/Driver/Driver";
@@ -44,4 +47,9 @@ const UserStatusBar = ({ cash, userName }) => {
     );
 };
 
-export default UserStatusBar;
+const mapStateToProps = (state) => ({
+    cash: getUserCash(state),
+    userName: getUserName(state),
+});
+
+export default connect(mapStateToProps)(UserStatusBar);

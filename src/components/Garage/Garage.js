@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import {
     changeCarColor,
@@ -16,12 +16,13 @@ import {
     getMountedEngine,
     getUserGearboxes,
     getMountedGearbox,
+    getCarColor,
+    getUserCash,
 } from "../../selectors";
 
 import CarColorChange from "../CarColorChange/CarColorChange";
 import CarDetails from "../CarDetails/CarDetails";
 import EnginesOffer from "../EnginesOffer/EnginesOffer";
-import Car from "../Car/Car";
 
 import Engine from "../../assets/Engine/Engine";
 import Gearbox from "../../assets/Gearbox/Gearbox";
@@ -95,7 +96,7 @@ const Garage = ({
                     {car && (
                         <CarOffer
                             car={car}
-                            action={sellCar}
+                            sellCar={sellCar}
                             actionLabel="SELL CAR"
                         />
                     )}
@@ -152,6 +153,8 @@ const mapStateToProps = (state) => ({
     mountedEngine: getMountedEngine(state),
     gearboxes: getUserGearboxes(state),
     mountedGearbox: getMountedGearbox(state),
+    carColor: getCarColor(state),
+    cash: getUserCash(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

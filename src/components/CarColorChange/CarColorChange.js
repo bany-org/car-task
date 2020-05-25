@@ -6,16 +6,12 @@ const ColorPicker = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: lightslategrey; */
     padding: 10px;
-
-    /* border: solid gray 2px;
-    border-radius: 20px; */
     min-width: 40%;
     max-width: 80%;
 `;
 
-const CarColorChange = ({ car, cash, changeColor }) => {
+const CarColorChange = ({ car, changeColor }) => {
     return (
         <ColorPicker>
             {car && (
@@ -24,7 +20,7 @@ const CarColorChange = ({ car, cash, changeColor }) => {
                         color={car?.color || "#000000"}
                         onChangeComplete={car ? changeColor : () => {}}
                     />
-                    <div>Zmiana koloru - 100$</div>
+                    <div>Change car color - 100$</div>
                 </>
             )}
             {!car && <h3>You need to buy a car</h3>}

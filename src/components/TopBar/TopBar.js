@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import UserStatusBar from "../UserStatusBar/container";
+import UserStatusBar from "../UserStatusBar/UserStatusBar";
 import NavigationButton from "../NavigationButton/NavigationButton";
 
 import Wiki from "../../assets/Wiki/Wiki";
@@ -14,13 +14,10 @@ const Body = styled.div`
     align-items: center;
     padding: 20px;
     background-color: darkgray;
-    /* border: solid 2px darkgray; */
-    /* border-radius: 15px; */
     padding: 20px;
 `;
 
 const NavigationBar = styled.div`
-    /* margin-top: 10px; */
     width: 100%;
     height: 100%;
     display: flex;

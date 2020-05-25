@@ -6,13 +6,6 @@ import CarUber from "../../assets/CarUber/CarUber";
 import CarWk from "../../assets/CarWk/CarWk";
 import CarStandard from "../../assets/CarStandard/CarStandard";
 
-const CarTypesIcons = {
-    PRO: <CarPro />,
-    UBER: <CarUber />,
-    STANDARD: <CarStandard />,
-    WK: <CarWk />,
-};
-
 const renderCarIcon = (type, color) => {
     switch (type) {
         case "PRO":
@@ -95,7 +88,7 @@ const OfferElementValue = styled.div`
     font-weight: 900;
 `;
 
-const CarOffer = ({ car, action, actionLabel }) => {
+const CarOffer = ({ car, sellCar, buyCar }) => {
     return (
         <Offer>
             <CarImage>{renderCarIcon(car.type, car.color)}</CarImage>
@@ -109,7 +102,12 @@ const CarOffer = ({ car, action, actionLabel }) => {
                     <OfferElementValue>{car.price}$</OfferElementValue>
                 </div>
             </CarDetails>
-            <OfferButton onClick={() => action(car)}>{actionLabel}</OfferButton>
+            {sellCar && (
+                <OfferButton onClick={() => sellCar(car)}>SELL CAR</OfferButton>
+            )}
+            {buyCar && (
+                <OfferButton onClick={() => buyCar(car)}>BUY CAR</OfferButton>
+            )}
         </Offer>
     );
 };

@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+import { addCash } from "../../actions";
+
 import styled from "styled-components";
 
 const Body = styled.div`
@@ -19,7 +22,7 @@ const Requirements = styled.div`
     padding: 0 20px;
 `;
 
-const Main = ({ addCash }) => {
+const Wiki = ({ addCash }) => {
     return (
         <Body>
             <Requirements>
@@ -47,7 +50,13 @@ const Main = ({ addCash }) => {
                 <ul>
                     <li>
                         You can sell your car for 100$ less than its basic value
+                        <p>
+                            <b>
+                                REMEBER!! You sell car with all mounter parts!!
+                            </b>
+                        </p>
                     </li>
+
                     <li>
                         You can sell engine for 50$ less than its basic value
                     </li>
@@ -121,4 +130,10 @@ const Main = ({ addCash }) => {
     );
 };
 
-export default Main;
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    addCash: () => {
+        dispatch(addCash());
+    },
+});
+
+export default connect(null, mapDispatchToProps)(Wiki);

@@ -11,8 +11,8 @@ import {
 } from "../actions";
 
 import TopBar from "./TopBar/TopBar";
-import Garage from "./Garage/container";
-import Wiki from "./Wiki/container";
+import Garage from "./Garage/Garage";
+import Wiki from "./Wiki/Wiki";
 import PartsShop from "./PartsShop/PartsShop";
 import Market from "./Market/Market";
 
@@ -99,21 +99,17 @@ function App({ updateCarsList, updateEnginesList, updateGearboxesList }) {
     const [isLoading, changeLoading] = useState(true);
 
     useEffect(() => {
-        // axios
-        //     .get(`https://swapi.dev/api/people/1`)
-        //     .then((res) => {
-        //         updateCarsList(carsList);
-        //         updateEnginesList(enginesList);
-        //         updateGearboxesList(gearboxesList);
-        //         changeLoading(false);
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     });
-        updateCarsList(carsList);
-        updateEnginesList(enginesList);
-        updateGearboxesList(gearboxesList);
-        changeLoading(false);
+        axios
+            .get(`https://swapi.dev/api/people/1`)
+            .then((res) => {
+                updateCarsList(carsList);
+                updateEnginesList(enginesList);
+                updateGearboxesList(gearboxesList);
+                changeLoading(false);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }, []);
     return (
         <HashRouter basename="/">

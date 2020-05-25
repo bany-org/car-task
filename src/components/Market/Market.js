@@ -31,7 +31,6 @@ const Board = styled.div`
 const Market = ({ carsList, buyCar, fullGarage }) => {
     return (
         <Body>
-            {/* zrobić to info też w kafelka */}
             {fullGarage && (
                 <>
                     <h1>New car is in your garage</h1>
@@ -48,7 +47,7 @@ const Market = ({ carsList, buyCar, fullGarage }) => {
                             <CarOffer
                                 key={elem.name}
                                 car={elem}
-                                action={buyCar}
+                                buyCar={buyCar}
                                 actionLabel="BUY NOW"
                             ></CarOffer>
                         );

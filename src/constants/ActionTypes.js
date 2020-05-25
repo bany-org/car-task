@@ -1,21 +1,13 @@
-export const ADD_TODO = "ADD_TODO";
-export const DELETE_TODO = "DELETE_TODO";
-export const EDIT_TODO = "EDIT_TODO";
-export const COMPLETE_TODO = "COMPLETE_TODO";
-export const COMPLETE_ALL_TODOS = "COMPLETE_ALL_TODOS";
-export const CLEAR_COMPLETED = "CLEAR_COMPLETED";
-export const SET_VISIBILITY_FILTER = "SET_VISIBILITY_FILTER";
-
-export const UPDATE_CASH_AMOUNT = "UPDATE_CASH_AMOUNT";
-export const CHANGE_ENGINE = "CHANGE_ENGINE";
 export const ADD_CASH = "ADD_CASH";
+export const UPDATE_CASH_AMOUNT = "UPDATE_CASH_AMOUNT";
+
 export const CHANGE_CAR_COLOR = "CHANGE_CAR_COLOR";
-export const BUY_CAR = "BUY_CAR";
 
 export const UPDATE_CARS_LIST = "UPDATE_CARS_LIST";
 export const UPDATE_ENGINES_LIST = "UPDATE_ENGINES_LIST";
 export const UPDATE_GEARBOXES_LIST = "UPDATE_GEARBOXES_LIST";
 
+export const BUY_CAR = "BUY_CAR";
 export const SELL_CAR = "SELL_CAR";
 
 export const BUY_ENGINE = "BUY_ENGINE";

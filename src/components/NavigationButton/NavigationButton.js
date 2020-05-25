@@ -15,8 +15,6 @@ const StyledNavLink = styled(NavLink)`
     align-items: center;
     padding: 5px 10px;
     border-radius: 15px;
-    /* width: 160px; */
-    /* border: solid gray 1px; */
 `;
 
 const NavigationButton = (props) => {
